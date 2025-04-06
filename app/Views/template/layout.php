@@ -1,4 +1,4 @@
-<li?php
+<?php
     $title=$title ?? "Trang web" ;
     $extraCSS=$extraCSS ?? "" ;
     $extraJS=$extraJS ?? "" ;
@@ -18,8 +18,8 @@
 
         <!-- CSS chính -->
         <!-- <link rel="stylesheet" href="style.css"> -->
-        <link rel="stylesheet" href="../template/style.css">
-        <style>
+        <link rel="stylesheet" href="/Views/template/style.css">
+        <!-- <style>
             ._header {
                 background: transparent;
                 display: flex;
@@ -591,7 +591,7 @@
                 padding: 8px 14px;
                 border: 1px solid rgb(219, 213, 213);
             }
-        </style>
+        </style> -->
 
         <!-- CSS riêng -->
         <?php if (!empty($extraCSS)): ?>
@@ -604,20 +604,32 @@
         <!-- Nội dung trang -->
         <main>
 
-            <nav class="_header">
+            <nav class="_header mw-100">
+                <div onclick="handleOpenSidebar()" class="_bar"><i class="fa-solid fa-bars"></i></div>
+                <!-- <i class='' class="fa-solid fa-bars"></i> -->
                 <div class="_logo">BKHome</div>
                 <ul class="_navi">
-                    <li class="_navi_ele">Trang chủ</li>
-                    <li class="_navi_ele">Giới thiệu</li>
-                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=Product&action=index">Sản phẩm</a></li>
-                    <li class="_navi_ele">Tin tức</li>
-                    <li class="_navi_ele">Hỏi đáp</li>
-                    <li class="_navi_ele">Liên hệ</li>
-                    
+                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=index">Trang chủ</a></li>
+                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=intro&action=index">Giới thiệu</a></li>
+                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=product&action=index">Sản phẩm</a></li>
+                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=index">Tin tức</a></li>
+                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></li>
+                    <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=index">Liên hệ</a></li>
+
                 </ul>
+                <i style="display: none" class="fa-solid fa-bars"></i>
 
                 <button class="btn btn-outline-dark">Login</button>
 
+                <div class="_sidebar" id="sidebar">
+                    <i onclick="handleCloseSidebar()" class="fa-solid fa-x"></i>
+                    <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=index">Trang chủ</a></div>
+                    <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=intro&action=index">Giới thiệu</a></div>
+                    <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=product&action=index">Sản phẩm</a></div>
+                    <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=index">Tin tức</a></div>
+                    <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></div>
+                    <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=index">Liên hệ</a></div>
+                </div>
             </nav>
 
 
@@ -625,48 +637,48 @@
 
             <footer class="_footer">
                 <section class="testimonial-section">
-                        <div class="container d-flex justify-content-center gap-5 mg-10 text-center flex-wrap">
-                            <div class="w-50">
-                                <h2 class="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
-                                <div class="stats d-flex justify-content-center gap-5 flex-wrap">
-                                    <div>
-                                        <h3>10m+</h3>
-                                        <p>Happy People</p>
-                                    </div>
-                                    <div>
-                                        <h3>4.88</h3>
-                                        <p>Overall rating</p>
-                                        <div class="stars">★★★★★</div>
-                                    </div>
+                    <div class="container d-flex justify-content-center gap-5 mg-10 text-center flex-wrap">
+                        <div class="w-50">
+                            <h2 class="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+                            <div class="stats d-flex justify-content-center gap-5 flex-wrap">
+                                <div>
+                                    <h3>10m+</h3>
+                                    <p>Happy People</p>
                                 </div>
-                            </div>
-
-
-                            <!-- Đánh giá của khách hàng -->
-                            <div class="testimonial">
-                                <div class="d-flex gap-3">
-                                    <img src="https://picsum.photos/200/300" class="rounded-circle img-fluid" style="width: 50px; height: 50px; object-fit: cover;" alt="img">
-                                    <div class="text-start">
-                                        <h4>Trần Thế Đại Phát</h4>
-                                        <p class="sub-text">Người dùng lâu năm</p>
-                                    </div>
-                                </div>
-
-                                <p class="review-text">
-                                    Trải nghiệm tuyệt vời! Giao diện trực quan, dễ dàng tìm kiếm bất động sản phù hợp. Tôi đã tìm được ngôi nhà ưng ý chỉ trong vài phút.
-                                </p>
-
-                                <!-- Nút điều hướng -->
-                                <div class="navigation">
-                                    <button class="btn-nav">&lt;</button>
-                                    <button class="btn-nav">&gt;</button>
+                                <div>
+                                    <h3>4.88</h3>
+                                    <p>Overall rating</p>
+                                    <div class="stars">★★★★★</div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <!-- Logo đối tác -->
-                        <!-- <hr class="divider">
+                        <!-- Đánh giá của khách hàng -->
+                        <div class="testimonial">
+                            <div class="d-flex gap-3">
+                                <img src="https://picsum.photos/200/300" class="rounded-circle img-fluid" style="width: 50px; height: 50px; object-fit: cover;" alt="img">
+                                <div class="text-start">
+                                    <h4>Trần Thế Đại Phát</h4>
+                                    <p class="sub-text">Người dùng lâu năm</p>
+                                </div>
+                            </div>
+
+                            <p class="review-text">
+                                Trải nghiệm tuyệt vời! Giao diện trực quan, dễ dàng tìm kiếm bất động sản phù hợp. Tôi đã tìm được ngôi nhà ưng ý chỉ trong vài phút.
+                            </p>
+
+                            <!-- Nút điều hướng -->
+                            <div class="navigation">
+                                <button class="btn-nav">&lt;</button>
+                                <button class="btn-nav">&gt;</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Logo đối tác -->
+                    <!-- <hr class="divider">
                     <p class="trusted-text">Thousands of world’s leading companies trust Space</p>
                     <div class="brands">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
@@ -678,7 +690,7 @@
                     </div> -->
                 </section>
                 <section>
-                    <form class="container my-5 d-flex flex-column align-items-center text-center" style="width:400px;">
+                    <form class="container my-5 d-flex flex-column align-items-center text-center mw-100" style="width:400px;">
                         <h2 class="text-center">Đánh Giá Trang Web 🌟</h2>
                         <p class="text-center text-muted">Hãy cho chúng tôi biết cảm nhận của bạn về trang web này!</p>
                         <div class="rating ">
@@ -788,64 +800,64 @@
                     </form>
                 </section>
                 <section class="testimonial-section" style="padding: 60px 10% ; width:100vw;">
-                        <div class="row d-flex justify-content-evenly">
-                            <div class="col-md-6 text-start">
-                                <h5>BKHome</h5>
-                            </div>
-
-                            <div class="col-md-6 text-end">
-                                <span>Follow Us</span>
-                                <div class="d-inline-block ms-2">
-                                    <i class="fa-brands fa-square-facebook"></i>
-                                    <i class="fab fa-twitter"></i>
-                                    <i class="fab fa-instagram"></i>
-                                    <i class="fab fa-linkedin"></i>
-                                </div>
-                            </div>
-
+                    <div class="row d-flex justify-content-evenly">
+                        <div class="col-md-6 text-start">
+                            <h5>BKHome</h5>
                         </div>
-                        <hr class="my-4">
-                        <div class="row mt-2">
-                            <div class="col-md-3">
-                                <h6>Khám Phá</h6>
-                                <ul class="list-unstyled">
-                                    <li>Hồ Chí Minh</li>
-                                    <li>Hà Nội</li>
-                                    <li>Đà Nẵng</li>
-                                    <li>Hải Phòng</li>
-                                    <li>Cần Thơ</li>
-                                    <li>Phú Quốc</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <h6>Truy Cập Nhanh</h6>
-                                <ul class="list-unstyled">
-                                    <li>Chúng tôi là ai?</li>
-                                    <li>Liên Lạc</li>
-                                    <li>Tin tức</li>
-                                    <li>Blog</li>
-                                    <li>Dự Án</li>
-                                    <li>Chính sách cá nhân</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <h6>Liên Hệ Với Chúng Tôi</h6>
-                                <p>Email: bk.home@gmail.com</p>
-                                <p>Điện thoại: (123) 456-7890</p>
-                            </div>
-                            <div class="col-md-3">
-                                <h6>Địa chỉ của chúng tôi</h6>
-                                <p>268, Lý Thường Kiệt, Quận 10, TP.HCM</p>
+
+                        <div class="col-md-6 text-end">
+                            <span>Follow Us</span>
+                            <div class="d-inline-block ms-2">
+                                <i class="fa-brands fa-square-facebook"></i>
+                                <i class="fab fa-twitter"></i>
+                                <i class="fab fa-instagram"></i>
+                                <i class="fab fa-linkedin"></i>
                             </div>
                         </div>
 
-                        <hr class="my-4">
-
-                        <div class="row">
-                            <div class=" text-center">
-                                <p class="mb-0">Copyright © 2025. BKHome</p>
-                            </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            <h6>Khám Phá</h6>
+                            <ul class="list-unstyled">
+                                <li>Hồ Chí Minh</li>
+                                <li>Hà Nội</li>
+                                <li>Đà Nẵng</li>
+                                <li>Hải Phòng</li>
+                                <li>Cần Thơ</li>
+                                <li>Phú Quốc</li>
+                            </ul>
                         </div>
+                        <div class="col-md-3">
+                            <h6>Truy Cập Nhanh</h6>
+                            <ul class="list-unstyled">
+                                <li>Chúng tôi là ai?</li>
+                                <li>Liên Lạc</li>
+                                <li>Tin tức</li>
+                                <li>Blog</li>
+                                <li>Dự Án</li>
+                                <li>Chính sách cá nhân</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Liên Hệ Với Chúng Tôi</h6>
+                            <p>Email: bk.home@gmail.com</p>
+                            <p>Điện thoại: (123) 456-7890</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Địa chỉ của chúng tôi</h6>
+                            <p>268, Lý Thường Kiệt, Quận 10, TP.HCM</p>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class=" text-center">
+                            <p class="mb-0">Copyright © 2025. BKHome</p>
+                        </div>
+                    </div>
                 </section>
             </footer>
         </main>
@@ -854,7 +866,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- JS chính -->
-        <script src="/template/script.js"></script>
+        <script src="/Views/template/script.js"></script>
 
         <!-- JS riêng -->
         <?php if (!empty($extraJS)): ?>
@@ -864,3 +876,4 @@
     </body>
 
     </html>
+?>
