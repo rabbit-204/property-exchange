@@ -82,7 +82,7 @@
     <div class="row g-4">
       <!-- Card Mẫu -->
         <div class="col-md-4">
-            <div class="property-card" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
                 <div class="property-overlay">
                     <div class="property-tags mb-2">
                     <span class="tag-ban">BÁN</span>
@@ -108,34 +108,7 @@
 
 
         <div class="col-md-4">
-            <div class="property-card" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4">
-            <div class="property-card" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
                 <div class="property-overlay">
                     <div class="property-tags mb-2">
                     <span class="tag-ban">BÁN</span>
@@ -162,7 +135,7 @@
 
 
         <div class="col-md-4">
-            <div class="property-card" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
                 <div class="property-overlay">
                     <div class="property-tags mb-2">
                     <span class="tag-ban">BÁN</span>
@@ -189,7 +162,7 @@
 
 
         <div class="col-md-4">
-            <div class="property-card" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
                 <div class="property-overlay">
                     <div class="property-tags mb-2">
                     <span class="tag-ban">BÁN</span>
@@ -216,7 +189,34 @@
 
 
         <div class="col-md-4">
-            <div class="property-card" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+                <div class="property-overlay">
+                    <div class="property-tags mb-2">
+                    <span class="tag-ban">BÁN</span>
+                    <span class="tag-hot">NỔI BẬT</span>
+                </div>
+
+                <div>
+                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
+                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
+
+                <div class="property-footer d-flex justify-content-between align-items-center">
+                    <div class="text-white">
+                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
+                        <i class="fa fa-bath ms-2"></i> 2
+                        <i class="fa fa-maximize ms-2"></i> 80m²
+                    </div>
+                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-4">
+            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
                 <div class="property-overlay">
                     <div class="property-tags mb-2">
                     <span class="tag-ban">BÁN</span>

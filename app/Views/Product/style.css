@@ -68,6 +68,8 @@ body {
     padding-left: 11px;
 }
 
+
+
 .filter-col:not(:first-child) {
     border-left: 1px solid #888;
     padding-left: 20px;
@@ -109,6 +111,17 @@ body {
     background-position: center;
     color: white;
     margin-bottom: 50px;
+  }
+  .zoom-on-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .zoom-on-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 2;
   }
   .property-overlay {
     position: absolute;
