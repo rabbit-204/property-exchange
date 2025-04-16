@@ -216,7 +216,7 @@
 
 
         <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
+            <div class="property-card zoom-on-hover" style="background-image: url(' ');">
                 <div class="property-overlay">
                     <div class="property-tags mb-2">
                     <span class="tag-ban">BÁN</span>
@@ -245,11 +245,11 @@
       <?php if (!empty($products)): ?>
             <?php foreach ($products as $product): ?>
                 <div class="col-md-4">
-                    <div class="property-card zoom-on-hover" style="background-image: url('<?= htmlspecialchars($product['image_url']) ?>');">
+                    <div class="property-card zoom-on-hover" style="background-image: url('<?= htmlspecialchars($product['image']) ?>');">
                         <div class="property-overlay">
                             <div class="property-tags mb-2">
-                                <span class="tag-ban"><?= htmlspecialchars($product['status']) ?></span>
-                                <span class="tag-hot"><?= htmlspecialchars($product['highlight']) ?></span>
+                                <span class="tag-ban"><?= htmlspecialchars($product['sell_type']) ?></span>
+                                <span class="tag-hot"><?= htmlspecialchars($product['hight_light']) ?></span>
                             </div>
 
                             <div>
@@ -261,7 +261,7 @@
                                 <div class="property-footer d-flex justify-content-between align-items-center">
                                     <div class="text-white">
                                         <i class="fa fa-bed" style="padding-left: 5px;"></i> <?= htmlspecialchars($product['bedrooms']) ?>
-                                        <i class="fa fa-bath ms-2"></i> <?= htmlspecialchars($product['bathrooms']) ?>
+                                        <i class="fa fa-bath ms-2"></i> <?= htmlspecialchars($product['toilets']) ?>
                                         <i class="fa fa-maximize ms-2"></i> <?= htmlspecialchars($product['area']) ?>m²
                                     </div>
                                     <div class="fw-bold text-white" style="padding-right: 20px;">Giá: <?= number_format($product['price'], 0, ',', '.') ?> VNĐ</div>
