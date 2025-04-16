@@ -1,0 +1,190 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.nav-tabs {
+    margin-top: 30px;
+}
+.nav-tabs .nav-link {
+    background-color: #21443F;
+    color: white;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    margin-right: 5px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #21443F80;
+    color: white;
+}
+
+.search-container {
+    background-color: #21443F;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+.form-select, .btn, .form-control {
+    border-radius: 10px;
+    background-color: #21443F;
+    border: 0px solid;
+    color: white;
+}
+
+.form-select:focus, .form-control:focus {
+    box-shadow: none;
+    border-color: #4E7C73;
+  }
+
+  .btn-filter:hover {
+    background-color: #2C5E56;
+  }
+
+.btn-filter {
+    background-color: transparent;
+    border: 2px solid #395D57;
+    color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btn-search {
+    background-color: #E2C169;
+    color: black;
+    font-weight: bold;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.form-label {
+    color: #AAAAAA;
+    font-size: 14px;
+    padding-left: 11px;
+}
+
+
+
+.filter-col:not(:first-child) {
+    border-left: 1px solid #888;
+    padding-left: 20px;
+}
+
+.filter-col select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 2.5rem; /* chừa chỗ bên phải cho icon */
+    background-color: #1e4c45; /* hoặc màu nền bạn đang dùng */
+    color: white;
+    border: 1px solid #ccc;
+  }
+  
+  /* Tạo icon mũi tên bằng CSS */
+  .filter-col {
+    position: relative;
+  }
+  
+  .filter-col::after {
+    content: '▼'; /* Mũi tên xuống */
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    font-size: 0.8rem;
+    color: #ccc;
+    pointer-events: none;
+  }
+
+
+.property-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    margin-bottom: 50px;
+  }
+  .zoom-on-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .zoom-on-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+  .property-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .property-tags span {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  .tag-ban {
+    background-color: #0B6E4F;
+  }
+  .tag-thue {
+    background-color: #007B83;
+  }
+  .tag-hot {
+    background-color: #E2C169;
+    color: black;
+  }
+  .property-footer {
+    font-size: 14px;
+    color: #DDDDDD;
+  }
+  .btn-load-more {
+    background-color: #E2C169;
+    color: black;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 8px 30px;
+    margin-bottom: 50px;
+  }
+  h5 {
+    margin: 0;
+  }
+  .property-footer {
+    font-size: 14px;
+    color: #DDDDDD;
+  }
+  .property-footer .fw-bold {
+    color: white;
+  }
+
+  .property-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    z-index: 0;
+  }
+  .property-overlay > * {
+    position: relative;
+    z-index: 1;
+  }
+  
