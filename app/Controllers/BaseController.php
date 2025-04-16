@@ -5,8 +5,11 @@ class BaseController
 {
     const VIEW_FOLDER_NAME = 'Views';
     const MODEL_FOLDER_NAME = 'Models';
-    protected function view($view_path)
+    protected function view($view_path, array $data = [])
     {
+        foreach ($data as $key => $value) {
+            $$key = $value; // Tạo biến động với tên là key và giá trị là value
+        }
         $view_path = self::VIEW_FOLDER_NAME . '/' . str_replace('.','/',$view_path) .'.php';
         return require $view_path;
     }
