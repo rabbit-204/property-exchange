@@ -9,8 +9,23 @@ class ProductController extends BaseController
 
     public function index()
     {
-        $listProduct = $this->productModel->getAllProducts();
-        return $this->view('product.index', ['products' => $listProduct]);  // Truyền dữ liệu vào view
+        $limit = 6; // Số sản phẩm trên mỗi trang
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Trang hiện tại
+        $offset = ($page - 1) * $limit;
+
+        // Lấy danh sách sản phẩm theo trang
+        $listProduct = $this->productModel->getProductsByPage($limit, $offset);
+
+        // Lấy tổng số sản phẩm để tính tổng số trang
+        $totalProducts = $this->productModel->getTotalProducts();
+        $totalPages = ceil($totalProducts / $limit);
+
+        // Truyền dữ liệu sang view
+        return $this->view('product.index', [
+            'products' => $listProduct,
+            'currentPage' => $page,
+            'totalPages' => $totalPages
+        ]);
     }
 }
 ?>

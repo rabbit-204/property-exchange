@@ -22,4 +22,14 @@ class ProductModel extends BaseModel {
         $sql = "DELETE FROM product WHERE id = ?";
         return $this->query($sql, [$id]);
     }
+
+    public function getProductsByPage($limit, $offset) {
+        $sql = "SELECT * FROM product LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
+        return $this->fetchAll($sql);
+    }
+    
+    public function getTotalProducts() {
+        $sql = "SELECT COUNT(*) as total FROM product";
+        return $this->fetchOne($sql)['total'];
+    }
 }

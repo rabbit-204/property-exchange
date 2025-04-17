@@ -41,247 +41,106 @@
   </ul>
 
   <!-- Filter Form -->
-  <div class="search-container">
-    <div class="row g-3 align-items-end">
-      <div class="col-md-3 filter-col position-relative">
-        <label class="form-label">Thành phố</label>
-        <select class="form-select">
-          <option selected>Tất cả thành phố</option>
-          <option>Hà Nội</option>
-          <option>TP HCM</option>
-        </select>
-      </div>
-      <div class="col-md-3 filter-col">
-        <label class="form-label">Loại nhà đất</label>
-        <select class="form-select">
-          <option selected>Tất cả loại nhà đất</option>
-          <option>Chung cư</option>
-          <option>Nhà riêng</option>
-        </select>
-      </div>
-      <div class="col-md-3 filter-col">
-        <label class="form-label">Giá</label>
-        <select class="form-select">
-          <option selected>Tất cả giá</option>
-          <option>Dưới 1 tỷ</option>
-          <option>1 - 3 tỷ</option>
-        </select>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center align-items-center gap-5">
-        <button class="btn btn-filter">
-          <i class="bi bi-sliders"></i> Filter
-        </button>
-        <button class="btn btn-search">
-          Search
-        </button>
-      </div>
+    <div class="search-container">
+        <div class="row g-3 align-items-end">
+        <div class="col-md-3 filter-col position-relative">
+            <label class="form-label">Thành phố</label>
+            <select class="form-select">
+            <option selected>Tất cả thành phố</option>
+            <option>Hà Nội</option>
+            <option>TP HCM</option>
+            </select>
+        </div>
+        <div class="col-md-3 filter-col">
+            <label class="form-label">Loại nhà đất</label>
+            <select class="form-select">
+            <option selected>Tất cả loại nhà đất</option>
+            <option>Chung cư</option>
+            <option>Nhà riêng</option>
+            </select>
+        </div>
+        <div class="col-md-3 filter-col">
+            <label class="form-label">Giá</label>
+            <select class="form-select">
+            <option selected>Tất cả giá</option>
+            <option>Dưới 1 tỷ</option>
+            <option>1 - 3 tỷ</option>
+            </select>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center align-items-center gap-5">
+            <button class="btn btn-filter">
+            <i class="bi bi-sliders"></i> Filter
+            </button>
+            <button class="btn btn-search">
+            Search
+            </button>
+        </div>
+        </div>
     </div>
-  </div>
 
-  <div class="container-fluid">
-    <div class="row g-4"> 
-      <!-- Card Mẫu -->
-        <!-- <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url('https://duanvinhomescoloa.vn/wp-content/uploads/2021/07/nha-vinhomes.jpg');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4">
-            <div class="property-card zoom-on-hover" style="background-image: url(' ');">
-                <div class="property-overlay">
-                    <div class="property-tags mb-2">
-                    <span class="tag-ban">BÁN</span>
-                    <span class="tag-hot">NỔI BẬT</span>
-                </div>
-
-                <div>
-                    <h5 class="text-white mb-1" style="margin-bottom: 2px;">Vinhomes Grand Park</h5>
-                    <div class="text-white" style="font-size: 14px; margin-bottom: 4px;"><i class="fa fa-location-dot"></i> Quận 9, Hồ Chí Minh</div>
-
-                <div class="property-footer d-flex justify-content-between align-items-center">
-                    <div class="text-white">
-                        <i class="fa fa-bed" style="padding-left: 5px;"></i> 2
-                        <i class="fa fa-bath ms-2"></i> 2
-                        <i class="fa fa-maximize ms-2"></i> 80m²
-                    </div>
-                        <div class="fw-bold text-white" style="padding-right: 20px;">Giá: 4,6 tỷ VNĐ</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-      <!-- Lặp lại thêm nhiều card như trên... -->
-
-      <?php echo '<script>console.log(' . json_encode($products) . ');</script>'; ?>
-      <?php if (!empty($products)): ?>
-            <?php foreach ($products as $product): ?>
-                <div class="col-md-4">
-                    <div class="property-card zoom-on-hover" style="background-image: url('<?= htmlspecialchars($product['image']) ?>');">
-                        <div class="property-overlay">
-                            <div class="property-tags mb-2">
-                                <span class="tag-ban"><?= htmlspecialchars($product['sell_type']) ?></span>
-                                <span class="tag-hot"><?= htmlspecialchars($product['hight_light']) ?></span>
-                            </div>
-
-                            <div>
-                                <h5 class="text-white mb-1" style="margin-bottom: 2px;"><?= htmlspecialchars($product['name']) ?></h5>
-                                <div class="text-white" style="font-size: 14px; margin-bottom: 4px;">
-                                    <i class="fa fa-location-dot"></i> <?= htmlspecialchars($product['location']) ?>
-                                </div>
-
-                                <div class="property-footer d-flex justify-content-between align-items-center">
-                                    <div class="text-white">
-                                        <i class="fa fa-bed" style="padding-left: 5px;"></i> <?= htmlspecialchars($product['bedrooms']) ?>
-                                        <i class="fa fa-bath ms-2"></i> <?= htmlspecialchars($product['toilets']) ?>
-                                        <i class="fa fa-maximize ms-2"></i> <?= htmlspecialchars($product['area']) ?>m²
+    <div class="container-fluid">
+        <div class="row g-4"> 
+            <?php echo '<script>console.log(' . json_encode($products) . ');</script>'; ?>
+                <?php if (!empty($products)): ?>
+                    <?php foreach ($products as $product): ?>
+                        <div class="col-md-4">
+                            <div class="property-card zoom-on-hover" style="background-image: url('<?= htmlspecialchars($product['image']) ?>');">
+                                <div class="property-overlay">
+                                    <div class="property-tags mb-2">
+                                        <span class="tag-ban"><?= htmlspecialchars($product['sell_type']) ?></span>
+                                        <span class="tag-hot"><?= htmlspecialchars($product['high_light']) ?></span>
                                     </div>
-                                    <div class="fw-bold text-white" style="padding-right: 20px;">Giá: <?= number_format($product['price'], 0, ',', '.') ?> VNĐ</div>
+
+                                    <div>
+                                        <h5 class="text-white mb-1" style="margin-bottom: 2px;"><?= htmlspecialchars($product['name']) ?></h5>
+                                        <div class="text-white" style="font-size: 14px; margin-bottom: 4px;">
+                                            <i class="fa fa-location-dot"></i> <?= htmlspecialchars($product['location']) ?>
+                                        </div>
+
+                                        <div class="property-footer d-flex justify-content-between align-items-center">
+                                            <div class="text-white">
+                                                <i class="fa fa-bed" style="padding-left: 5px;"></i> <?= htmlspecialchars($product['bedrooms']) ?>
+                                                <i class="fa fa-bath ms-2"></i> <?= htmlspecialchars($product['toilets']) ?>
+                                                <i class="fa fa-maximize ms-2"></i> <?= htmlspecialchars($product['area']) ?>m²
+                                            </div>
+                                            <div class="fw-bold text-white" style="padding-right: 20px;">Giá: <?= number_format($product['price'], 0, ',', '.') ?> VNĐ</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Không có sản phẩm nào để hiển thị.</p>
-        <?php endif; ?>
-    </div>
-</div>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>Không có sản phẩm nào để hiển thị.</p>
+                <?php endif; ?>
+            </div>
+        </div>
  
-      <div class="col-12 text-center mt-4">
-        <button class="btn btn-load-more">Xem thêm <i class="fa fa-arrow-right"></i></button>
-      </div>
+        <div class="pagination-container text-center mt-4">
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <?php if ($currentPage > 1): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?controller=product&action=index&page=<?= $currentPage - 1 ?>">Trước</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
+                            <a class="page-link" href="?controller=product&action=index&page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+
+                    <?php if ($currentPage < $totalPages): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?controller=product&action=index&page=<?= $currentPage + 1 ?>">Tiếp</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+        </div>
     </div>
-  </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.js"></script>
