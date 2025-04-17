@@ -27,51 +27,70 @@
     <body>
 
     <!-- Tabs -->
-  <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="ban-tab" data-bs-toggle="tab" type="button" role="tab">Nhà đất bán</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="thue-tab" data-bs-toggle="tab" type="button" role="tab">Nhà đất thuê</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="duan-tab" data-bs-toggle="tab" type="button" role="tab">Dự án</button>
-    </li>
-  </ul>
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?= !isset($_GET['sell_type']) || $_GET['sell_type'] === 'All' ? 'active' : '' ?>" 
+            href="?<?= http_build_query(array_merge($_GET, ['sell_type' => 'All', 'page' => 1])) ?>">Tất cả</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?= isset($_GET['sell_type']) && $_GET['sell_type'] === 'BÁN' ? 'active' : '' ?>" 
+            href="?<?= http_build_query(array_merge($_GET, ['sell_type' => 'BÁN', 'page' => 1])) ?>">Nhà bán</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?= isset($_GET['sell_type']) && $_GET['sell_type'] === 'THUÊ' ? 'active' : '' ?>" 
+            href="?<?= http_build_query(array_merge($_GET, ['sell_type' => 'THUÊ', 'page' => 1])) ?>">Nhà thuê</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?= isset($_GET['sell_type']) && $_GET['sell_type'] === 'DỰ ÁN' ? 'active' : '' ?>" 
+            href="?<?= http_build_query(array_merge($_GET, ['sell_type' => 'DỰ ÁN', 'page' => 1])) ?>">Dự án</a>
+        </li>
+    </ul>
 
   <!-- Filter Form -->
     <div class="search-container">
-        <div class="row g-3 align-items-end">
+    <div class="row g-3 align-items-end">
+            <!-- Filter Thành phố -->
             <div class="col-md-3 filter-col position-relative">
                 <label class="form-label">Thành phố</label>
-                <select class="form-select">
-                <option selected>Tất cả thành phố</option>
-                <option>Hà Nội</option>
-                <option>TP HCM</option>
+                <select class="form-select" id="cityFilter">
+                    <option value="All" <?= isset($_GET['city']) && $_GET['city'] === 'All' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="Hà Nội" <?= isset($_GET['city']) && $_GET['city'] === 'Hà Nội' ? 'selected' : '' ?>>Hà Nội</option>
+                    <option value="TP HCM" <?= isset($_GET['city']) && $_GET['city'] === 'TP HCM' ? 'selected' : '' ?>>TP HCM</option>
+                    <option value="Khác" <?= isset($_GET['city']) && $_GET['city'] === 'Khác' ? 'selected' : '' ?>>Khác</option>
                 </select>
             </div>
+
+            <!-- Filter Loại nhà đất -->
             <div class="col-md-3 filter-col">
                 <label class="form-label">Loại nhà đất</label>
-                <select class="form-select">
-                <option selected>Tất cả loại nhà đất</option>
-                <option>Chung cư</option>
-                <option>Nhà riêng</option>
+                <select class="form-select" id="typeFilter">
+                    <option value="All" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'All' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="Villa" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Villa' ? 'selected' : '' ?>>Villa</option>
+                    <option value="DetachedHouse" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'DetachedHouse' ? 'selected' : '' ?>>Nhà đất</option>
+                    <option value="Apartment" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Apartment' ? 'selected' : '' ?>>Chung cư</option>
+                    <option value="Others" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Others' ? 'selected' : '' ?>>Khác</option>
                 </select>
             </div>
+
+            <!-- Filter Giá -->
             <div class="col-md-3 filter-col">
                 <label class="form-label">Giá</label>
-                <select class="form-select">
-                <option selected>Tất cả giá</option>
-                <option>Dưới 1 tỷ</option>
-                <option>1 - 3 tỷ</option>
+                <select class="form-select" id="priceFilter">
+                    <option value="All" <?= isset($_GET['price_range']) && $_GET['price_range'] === 'All' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="under_10m" <?= isset($_GET['price_range']) && $_GET['price_range'] === 'under_10m' ? 'selected' : '' ?>>Dưới 10 triệu</option>
+                    <option value="10m_to_100m" <?= isset($_GET['price_range']) && $_GET['price_range'] === '10m_to_100m' ? 'selected' : '' ?>>10 triệu - 100 triệu</option>
+                    <option value="100m_to_3b" <?= isset($_GET['price_range']) && $_GET['price_range'] === '100m_to_3b' ? 'selected' : '' ?>>100 triệu - 3 tỷ</option>
+                    <option value="above_3b" <?= isset($_GET['price_range']) && $_GET['price_range'] === 'above_3b' ? 'selected' : '' ?>>Trên 3 tỷ</option>
                 </select>
             </div>
+        
             <div class="col-md-3 d-flex justify-content-center align-items-center gap-5">
-                <button class="btn btn-filter"><i class="bi bi-sliders"></i> Filter</button>
+            <button class="btn btn-filter" id="applyFilter"><i class="bi bi-sliders"></i> Filter</button>
                 <button class="btn btn-search" id="searchButton">Search</button>
             </div>
             <div id="searchBar" class="search-bar">
-                <input type="text" id="searchInput" class="form-control" placeholder="Nhập tên hoặc địa chỉ sản phẩm..." value="<?= htmlspecialchars($search ?? '') ?>">
+                <input type="text" id="searchInput" class="form-control" placeholder="Nhập tên hoặc địa chỉ sản phẩm..." 
+                    value="<?= htmlspecialchars($search ?? '') ?>">
             </div>
         </div>
     </div>
@@ -114,34 +133,42 @@
             </div>
         </div>
  
-        <div class="pagination-container text-center mt-4">
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <?php if ($currentPage > 1): ?>
-                        <li class="page-item">
-                            <a class="page-link" href="?controller=product&action=index&page=<?= $currentPage - 1 ?>">Trước</a>
-                        </li>
-                    <?php endif; ?>
+        <?php if ($totalPages > 1): ?>
+            <div class="pagination-container text-center mt-4">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <?php
+                        // Loại bỏ tham số 'page' khỏi $_GET
+                        $queryParams = $_GET;
+                        unset($queryParams['page']);
+                        ?>
 
-                    <?php
-                    $startPage = max(1, $currentPage - 2); 
-                    $endPage = min($totalPages, $currentPage + 2); 
-                    ?>
+                        <?php if ($currentPage > 1): ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?<?= http_build_query(array_merge($queryParams, ['page' => $currentPage - 1])) ?>">Trước</a>
+                            </li>
+                        <?php endif; ?>
 
-                    <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
-                        <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
-                            <a class="page-link" href="?controller=product&action=index&page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
+                        <?php
+                        $startPage = max(1, $currentPage - 2); 
+                        $endPage = min($totalPages, $currentPage + 2); 
+                        ?>
 
-                    <?php if ($currentPage < $totalPages): ?>
-                        <li class="page-item">
-                            <a class="page-link" href="?controller=product&action=index&page=<?= $currentPage + 1 ?>">Tiếp</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </div>
+                        <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                            <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
+                                <a class="page-link" href="?<?= http_build_query(array_merge($queryParams, ['page' => $i])) ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
+
+                        <?php if ($currentPage < $totalPages): ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?<?= http_build_query(array_merge($queryParams, ['page' => $currentPage + 1])) ?>">Tiếp</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </nav>
+            </div>
+        <?php endif; ?>
     </div>
 
 
@@ -150,27 +177,49 @@
     </body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        const searchButton = document.getElementById("searchButton");
-        const searchBar = document.getElementById("searchBar");
-        const searchInput = document.getElementById("searchInput");
+            const searchButton = document.getElementById("searchButton");
+            const searchBar = document.getElementById("searchBar");
+            const searchInput = document.getElementById("searchInput");
 
-        if (searchButton && searchBar) {
-            searchButton.addEventListener("click", function () {
-                searchBar.classList.toggle("active"); // Thêm hoặc xóa class "active"
-            });
-        }
+            if (searchButton && searchBar) {
+                searchButton.addEventListener("click", function () {
+                    searchBar.classList.toggle("active"); // Thêm hoặc xóa class "active"
+                });
+            }
 
-        if (searchInput) {
-            searchInput.addEventListener("keypress", function (event) {
-                if (event.key === "Enter") {
-                    event.preventDefault();
-                    const keyword = searchInput.value.trim();
-                    if (keyword) {
-                        window.location.href = `?controller=product&action=index&search=${encodeURIComponent(keyword)}`;
+            if (searchInput) {
+                searchInput.addEventListener("keypress", function (event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        const keyword = searchInput.value.trim();
+                        if (keyword) {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            urlParams.set('search', keyword);
+                            urlParams.set('page', 1); // Reset về trang 1
+                            window.location.href = `?${urlParams.toString()}`;
+                        }
                     }
-                }
-            });
-        }
-    });
+                });
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const applyFilterButton = document.getElementById("applyFilter");
+
+            if (applyFilterButton) {
+                applyFilterButton.addEventListener("click", function () {
+                    const city = document.getElementById("cityFilter").value;
+                    const type = document.getElementById("typeFilter").value;
+                    const price = document.getElementById("priceFilter").value;
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('city', city);
+                    urlParams.set('type_of_real_estate', type);
+                    urlParams.set('price_range', price);
+                    urlParams.set('page', 1); // Reset về trang 1
+
+                    window.location.href = `?${urlParams.toString()}`;
+                });
+            }
+        });
     </script>
 </html>

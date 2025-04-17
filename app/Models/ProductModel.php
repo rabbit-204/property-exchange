@@ -42,4 +42,125 @@ class ProductModel extends BaseModel {
         $sql = "SELECT COUNT(*) as total FROM product WHERE name LIKE ? OR location LIKE ?";
         return $this->fetchOne($sql, ["%$keyword%", "%$keyword%"])['total'];
     }
+
+    // public function filterProducts($keyword, $sellType, $limit, $offset) {
+    //     $sql = "SELECT * FROM product WHERE 1=1";
+    
+    //     $params = [];
+    //     if ($keyword) {
+    //         $sql .= " AND (name LIKE ? OR location LIKE ?)";
+    //         $params[] = "%$keyword%";
+    //         $params[] = "%$keyword%";
+    //     }
+    
+    //     if ($sellType) {
+    //         $sql .= " AND sell_type = ?";
+    //         $params[] = $sellType;
+    //     }
+    
+    //     $sql .= " LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
+    
+    //     return $this->fetchAll($sql, $params);
+    // }
+    
+    // public function countFilteredProducts($keyword, $sellType) {
+    //     $sql = "SELECT COUNT(*) as total FROM product WHERE 1=1";
+    
+    //     $params = [];
+    //     if ($keyword) {
+    //         $sql .= " AND (name LIKE ? OR location LIKE ?)";
+    //         $params[] = "%$keyword%";
+    //         $params[] = "%$keyword%";
+    //     }
+    
+    //     if ($sellType) {
+    //         $sql .= " AND sell_type = ?";
+    //         $params[] = $sellType;
+    //     }
+    
+    //     return $this->fetchOne($sql, $params)['total'];
+    // }
+
+    public function filterProducts($keyword, $sellType, $city, $type, $priceRange, $limit, $offset) {
+        $sql = "SELECT * FROM product WHERE 1=1";
+        $params = [];
+    
+        if ($keyword) {
+            $sql .= " AND (name LIKE ? OR location LIKE ?)";
+            $params[] = "%$keyword%";
+            $params[] = "%$keyword%";
+        }
+    
+        if ($sellType) {
+            $sql .= " AND sell_type = ?";
+            $params[] = $sellType;
+        }
+    
+        if ($city) {
+            $sql .= " AND city = ?";
+            $params[] = $city;
+        }
+    
+        if ($type) {
+            $sql .= " AND type_of_real_estate = ?";
+            $params[] = $type;
+        }
+    
+        if ($priceRange) {
+            if ($priceRange === 'under_10m') {
+                $sql .= " AND price < 10000000";
+            } elseif ($priceRange === '10m_to_100m') {
+                $sql .= " AND price BETWEEN 10000000 AND 100000000";
+            } elseif ($priceRange === '100m_to_3b') {
+                $sql .= " AND price BETWEEN 100000000 AND 3000000000";
+            } elseif ($priceRange === 'above_3b') {
+                $sql .= " AND price > 3000000000";
+            }
+        }
+    
+        $sql .= " LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
+    
+        return $this->fetchAll($sql, $params);
+    }
+    
+    public function countFilteredProducts($keyword, $sellType, $city, $type, $priceRange) {
+        $sql = "SELECT COUNT(*) as total FROM product WHERE 1=1";
+        $params = [];
+
+        if ($sellType && $sellType !== 'All') {
+            $sql .= " AND sell_type = ?";
+            $params[] = $sellType;
+        }
+    
+        if ($keyword) {
+            $sql .= " AND (name LIKE ? OR location LIKE ?)";
+            $params[] = "%$keyword%";
+            $params[] = "%$keyword%";
+        }
+    
+        if ($city) {
+            $sql .= " AND city = ?";
+            $params[] = $city;
+        }
+    
+        if ($type) {
+            $sql .= " AND type_of_real_estate = ?";
+            $params[] = $type;
+        }
+    
+        if ($priceRange) {
+            if ($priceRange === 'under_10m') {
+                $sql .= " AND price < 10000000";
+            } elseif ($priceRange === '10m_to_100m') {
+                $sql .= " AND price BETWEEN 10000000 AND 100000000";
+            } elseif ($priceRange === '100m_to_3b') {
+                $sql .= " AND price BETWEEN 100000000 AND 3000000000";
+            } elseif ($priceRange === 'above_3b') {
+                $sql .= " AND price > 3000000000";
+            }
+        }
+    
+        return $this->fetchOne($sql, $params)['total'];
+    }
+
 }
