@@ -1,7 +1,7 @@
 <?php
     $title=$title ?? "Trang sản phẩm" ;
     $extraCSS=$extraCSS ?? "/Views/Product/style.css" ;
-    $extraJS=$extraJS ?? "" ;
+    $extraJS=$extraJS ?? "/Views/Product/script.js" ;
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,6 @@
         <!-- CSS chính -->
         <!-- <link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="/Views/teamplate/style.css">
-
         <!-- CSS riêng -->
         <?php if (!empty($extraCSS)): ?>
             <link rel="stylesheet" href="<?= $extraCSS ?>">
@@ -43,41 +42,40 @@
   <!-- Filter Form -->
     <div class="search-container">
         <div class="row g-3 align-items-end">
-        <div class="col-md-3 filter-col position-relative">
-            <label class="form-label">Thành phố</label>
-            <select class="form-select">
-            <option selected>Tất cả thành phố</option>
-            <option>Hà Nội</option>
-            <option>TP HCM</option>
-            </select>
-        </div>
-        <div class="col-md-3 filter-col">
-            <label class="form-label">Loại nhà đất</label>
-            <select class="form-select">
-            <option selected>Tất cả loại nhà đất</option>
-            <option>Chung cư</option>
-            <option>Nhà riêng</option>
-            </select>
-        </div>
-        <div class="col-md-3 filter-col">
-            <label class="form-label">Giá</label>
-            <select class="form-select">
-            <option selected>Tất cả giá</option>
-            <option>Dưới 1 tỷ</option>
-            <option>1 - 3 tỷ</option>
-            </select>
-        </div>
-        <div class="col-md-3 d-flex justify-content-center align-items-center gap-5">
-            <button class="btn btn-filter">
-            <i class="bi bi-sliders"></i> Filter
-            </button>
-            <button class="btn btn-search">
-            Search
-            </button>
-        </div>
+            <div class="col-md-3 filter-col position-relative">
+                <label class="form-label">Thành phố</label>
+                <select class="form-select">
+                <option selected>Tất cả thành phố</option>
+                <option>Hà Nội</option>
+                <option>TP HCM</option>
+                </select>
+            </div>
+            <div class="col-md-3 filter-col">
+                <label class="form-label">Loại nhà đất</label>
+                <select class="form-select">
+                <option selected>Tất cả loại nhà đất</option>
+                <option>Chung cư</option>
+                <option>Nhà riêng</option>
+                </select>
+            </div>
+            <div class="col-md-3 filter-col">
+                <label class="form-label">Giá</label>
+                <select class="form-select">
+                <option selected>Tất cả giá</option>
+                <option>Dưới 1 tỷ</option>
+                <option>1 - 3 tỷ</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center align-items-center gap-5">
+                <button class="btn btn-filter"><i class="bi bi-sliders"></i> Filter</button>
+                <button class="btn btn-search" id="searchButton">Search</button>
+            </div>
+            <div id="searchBar" class="search-bar">
+                <input type="text" id="searchInput" class="form-control" placeholder="Nhập tên hoặc địa chỉ sản phẩm..." value="<?= htmlspecialchars($search ?? '') ?>">
+            </div>
         </div>
     </div>
-
+    
     <div class="container-fluid">
         <div class="row g-4"> 
             <?php echo '<script>console.log(' . json_encode($products) . ');</script>'; ?>
@@ -125,7 +123,12 @@
                         </li>
                     <?php endif; ?>
 
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <?php
+                    $startPage = max(1, $currentPage - 2); 
+                    $endPage = min($totalPages, $currentPage + 2); 
+                    ?>
+
+                    <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
                         <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
                             <a class="page-link" href="?controller=product&action=index&page=<?= $i ?>"><?= $i ?></a>
                         </li>
@@ -143,7 +146,31 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.js"></script>
-    
+    <script src="<?= $extraJS ?>"></script>
     </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const searchButton = document.getElementById("searchButton");
+        const searchBar = document.getElementById("searchBar");
+        const searchInput = document.getElementById("searchInput");
+
+        if (searchButton && searchBar) {
+            searchButton.addEventListener("click", function () {
+                searchBar.classList.toggle("active"); // Thêm hoặc xóa class "active"
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    const keyword = searchInput.value.trim();
+                    if (keyword) {
+                        window.location.href = `?controller=product&action=index&search=${encodeURIComponent(keyword)}`;
+                    }
+                }
+            });
+        }
+    });
+    </script>
 </html>

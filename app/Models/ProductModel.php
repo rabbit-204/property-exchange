@@ -32,4 +32,14 @@ class ProductModel extends BaseModel {
         $sql = "SELECT COUNT(*) as total FROM product";
         return $this->fetchOne($sql)['total'];
     }
+
+    public function searchProducts($keyword, $limit, $offset) {
+        $sql = "SELECT * FROM product WHERE name LIKE ? OR location LIKE ? LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
+        return $this->fetchAll($sql, ["%$keyword%", "%$keyword%"]);
+    }
+    
+    public function countSearchProducts($keyword) {
+        $sql = "SELECT COUNT(*) as total FROM product WHERE name LIKE ? OR location LIKE ?";
+        return $this->fetchOne($sql, ["%$keyword%", "%$keyword%"])['total'];
+    }
 }

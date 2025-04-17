@@ -188,3 +188,35 @@ body {
     z-index: 1;
   }
   
+.pagination .page-item .page-link {
+    background-color: #ffc107; 
+    color: #000; 
+    border: 1px solid #ffc107; 
+    font-size: 1.25rem; 
+    padding: 0.75rem 1.5rem; 
+    margin-bottom: 50px;
+}
+
+.pagination .page-item.active .page-link {
+      background-color: #ffca2c; 
+      color: #000;
+      border-color: #ffca2c; 
+}
+
+  .pagination .page-item .page-link:hover {
+      background-color: #ffdd57; 
+      color: #000; 
+  }
+
+  .search-bar {
+    max-height: 0; /* Ẩn thanh tìm kiếm ban đầu */
+    overflow: hidden; /* Ẩn nội dung khi thanh bị thu nhỏ */
+    transition: max-height 0.8s ease-in-out; /* Hiệu ứng trượt mượt */
+}
+
+.search-bar.active {
+    max-height: 100px; /* Chiều cao tối đa khi hiển thị */
+}
+.form-control{
+    background-color: white;
+}
