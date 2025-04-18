@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Thanh toán qua QR</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán QR</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>Quét mã QR để thanh toán</h2>
-    <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= urlencode($checkoutUrl) ?>" alt="QR Code">
-    <p>Hoặc <a href="<?= htmlspecialchars($checkoutUrl) ?>" target="_blank">nhấn vào đây</a> để thanh toán.</p>
+    <p><a href="<?= htmlspecialchars($checkoutUrl) ?>" target="_blank">Hoặc nhấn vào đây để thanh toán</a></p>
 </body>
 </html>

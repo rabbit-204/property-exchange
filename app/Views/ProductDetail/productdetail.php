@@ -227,9 +227,15 @@
                             class="btn btn-outline-primary" style="margin-top: 10px">Nhắn tin qua Zalo</a>
                     </div>
                 </div>
-                <a href="index.php?controller=payment&action=create">
-                    <button>Thanh toán</button>
-                </a>
+                <div class="mt-4">
+                    <h5 class="fw-bold text-primary">Thanh toán</h5>
+                    <form action="index.php?controller=payment&action=create" method="POST">
+                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
+                        <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
+                        <input type="hidden" name="product_price" value="<?= htmlspecialchars($product['price']) ?>">
+                        <button type="submit" class="btn btn-success">Thanh toán qua QR</button>
+                    </form>
+                </div>
             </div>
         </div>
 
