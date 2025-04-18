@@ -227,6 +227,9 @@
                             class="btn btn-outline-primary" style="margin-top: 10px">Nhắn tin qua Zalo</a>
                     </div>
                 </div>
+                <a href="index.php?controller=payment&action=create">
+                    <button>Thanh toán</button>
+                </a>
             </div>
         </div>
 
