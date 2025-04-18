@@ -227,14 +227,22 @@
                             class="btn btn-outline-primary" style="margin-top: 10px">Nhắn tin qua Zalo</a>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <h5 class="fw-bold text-primary">Thanh toán</h5>
-                    <form action="index.php?controller=payment&action=create" method="POST">
-                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
-                        <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
-                        <input type="hidden" name="product_price" value="<?= htmlspecialchars($product['price']) ?>">
-                        <button type="submit" class="btn btn-success">Thanh toán qua QR</button>
-                    </form>
+                <div class="contact-card-container mt-4">
+                    <div class="contact-card" id="paymentCard">
+                        <h5 style="margin-bottom: 20px"><strong>Bạn muốn đặt cọc trước ?</strong></h5>
+                        <form id="paymentForm">
+                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
+                            <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
+                            <input type="hidden" name="product_price" value="<?= htmlspecialchars($product['price']) ?>">
+                            <button type="button" id="payButton" class="btn btn-success w-100">Thanh toán qua ngân hàng</button>
+                        </form>
+                        <div id="paymentResult" class="mt-3" style="display: none;">
+                            <h5 style="margin-bottom: 20px"><strong>Chuyển khoản cho chủ sở hữu</strong></h5>
+                            <p class="mt-2">
+                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">nhấn vào đây để nhận mã QR</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -333,7 +341,7 @@
     </div>
 
     <div class="mt-5" style="margin-left: 20px; margin-right: 20px;">
-        <h5 class="" style="margin-bottom: 10px; color: #1565C0; font-weight: bold;">Sản phẩm tương tự</h5>
+        <h5 class="" style="margin-bottom: 10px; color: #1565C0; font-weight: bold;">Bất động sản dành cho bạn</h5>
         <div class="row">
             <?php foreach (array_slice($suggestedProducts, 0, 3) as $suggestedProduct): ?>
             <div class="col-md-4">
@@ -377,6 +385,28 @@
     </div>
 
     <script>
+        document.getElementById('payButton').addEventListener('click', function () {
+        const formData = new FormData(document.getElementById('paymentForm'));
+
+        fetch('index.php?controller=payment&action=create', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Hiển thị mã QR và liên kết thanh toán
+                document.getElementById('paymentResult').style.display = 'block';
+                document.getElementById('checkoutLink').href = data.checkoutUrl;
+            } else {
+                alert(data.message || 'Có lỗi xảy ra khi tạo liên kết thanh toán.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi gửi yêu cầu thanh toán.');
+        });
+    });
     document.getElementById('showPhoneBtn').addEventListener('click', function() {
         const phoneNumber = document.getElementById('phoneNumber');
         phoneNumber.style.display = 'block';
