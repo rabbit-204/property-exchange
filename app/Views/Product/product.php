@@ -101,30 +101,32 @@
                 <?php if (!empty($products)): ?>
                     <?php foreach ($products as $product): ?>
                         <div class="col-md-4">
-                            <div class="property-card zoom-on-hover" style="background-image: url('<?= htmlspecialchars($product['image']) ?>');">
-                                <div class="property-overlay">
-                                    <div class="property-tags mb-2">
-                                        <span class="tag-ban"><?= htmlspecialchars($product['sell_type']) ?></span>
-                                        <span class="tag-hot"><?= htmlspecialchars($product['high_light']) ?></span>
-                                    </div>
-
-                                    <div>
-                                        <h5 class="text-white mb-1" style="margin-bottom: 2px;"><?= htmlspecialchars($product['name']) ?></h5>
-                                        <div class="text-white" style="font-size: 14px; margin-bottom: 4px;">
-                                            <i class="fa fa-location-dot"></i> <?= htmlspecialchars($product['location']) ?>
+                            <a href="index.php?controller=productdetail&action=index&id=<?= htmlspecialchars($product['id']) ?>" class="text-decoration-none">
+                                <div class="property-card zoom-on-hover" style="background-image: url('<?= htmlspecialchars($product['image']) ?>');">
+                                    <div class="property-overlay">
+                                        <div class="property-tags mb-2">
+                                            <span class="tag-ban"><?= htmlspecialchars($product['sell_type']) ?></span>
+                                            <span class="tag-hot"><?= htmlspecialchars($product['high_light']) ?></span>
                                         </div>
 
-                                        <div class="property-footer d-flex justify-content-between align-items-center">
-                                            <div class="text-white">
-                                                <i class="fa fa-bed" style="padding-left: 5px;"></i> <?= htmlspecialchars($product['bedrooms']) ?>
-                                                <i class="fa fa-bath ms-2"></i> <?= htmlspecialchars($product['toilets']) ?>
-                                                <i class="fa fa-maximize ms-2"></i> <?= htmlspecialchars($product['area']) ?>m²
+                                        <div>
+                                            <h5 class="text-white mb-1" style="margin-bottom: 2px;"><?= htmlspecialchars($product['name']) ?></h5>
+                                            <div class="text-white" style="font-size: 14px; margin-bottom: 4px;">
+                                                <i class="fa fa-location-dot"></i> <?= htmlspecialchars($product['location']) ?>
                                             </div>
-                                            <div class="fw-bold text-white" style="padding-right: 20px;">Giá: <?= number_format($product['price'], 0, ',', '.') ?> VNĐ</div>
+
+                                            <div class="property-footer d-flex justify-content-between align-items-center">
+                                                <div class="text-white">
+                                                    <i class="fa fa-bed" style="padding-left: 5px;"></i> <?= htmlspecialchars($product['bedrooms']) ?>
+                                                    <i class="fa fa-bath ms-2"></i> <?= htmlspecialchars($product['toilets']) ?>
+                                                    <i class="fa fa-maximize ms-2"></i> <?= htmlspecialchars($product['area']) ?>m²
+                                                </div>
+                                                <div class="fw-bold text-white" style="padding-right: 20px;">Giá: <?= number_format($product['price'], 0, ',', '.') ?> VNĐ</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                     <?php else: ?>
@@ -138,7 +140,6 @@
                 <nav>
                     <ul class="pagination justify-content-center">
                         <?php
-                        // Loại bỏ tham số 'page' khỏi $_GET
                         $queryParams = $_GET;
                         unset($queryParams['page']);
                         ?>

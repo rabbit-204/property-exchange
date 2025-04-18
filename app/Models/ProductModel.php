@@ -7,7 +7,8 @@ class ProductModel extends BaseModel {
         return $this->fetchAll($sql);
     }
 
-    public function getProductById($id) {
+    public function getProductById($id)
+    {
         $sql = "SELECT * FROM product WHERE id = ?";
         return $this->fetchOne($sql, [$id]);
     }
@@ -43,43 +44,6 @@ class ProductModel extends BaseModel {
         return $this->fetchOne($sql, ["%$keyword%", "%$keyword%"])['total'];
     }
 
-    // public function filterProducts($keyword, $sellType, $limit, $offset) {
-    //     $sql = "SELECT * FROM product WHERE 1=1";
-    
-    //     $params = [];
-    //     if ($keyword) {
-    //         $sql .= " AND (name LIKE ? OR location LIKE ?)";
-    //         $params[] = "%$keyword%";
-    //         $params[] = "%$keyword%";
-    //     }
-    
-    //     if ($sellType) {
-    //         $sql .= " AND sell_type = ?";
-    //         $params[] = $sellType;
-    //     }
-    
-    //     $sql .= " LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
-    
-    //     return $this->fetchAll($sql, $params);
-    // }
-    
-    // public function countFilteredProducts($keyword, $sellType) {
-    //     $sql = "SELECT COUNT(*) as total FROM product WHERE 1=1";
-    
-    //     $params = [];
-    //     if ($keyword) {
-    //         $sql .= " AND (name LIKE ? OR location LIKE ?)";
-    //         $params[] = "%$keyword%";
-    //         $params[] = "%$keyword%";
-    //     }
-    
-    //     if ($sellType) {
-    //         $sql .= " AND sell_type = ?";
-    //         $params[] = $sellType;
-    //     }
-    
-    //     return $this->fetchOne($sql, $params)['total'];
-    // }
 
     public function filterProducts($keyword, $sellType, $city, $type, $priceRange, $limit, $offset) {
         $sql = "SELECT * FROM product WHERE 1=1";
@@ -163,4 +127,15 @@ class ProductModel extends BaseModel {
         return $this->fetchOne($sql, $params)['total'];
     }
 
+    public function getProductsByCity($city, $excludeId)
+    {
+        $sql = "SELECT * FROM product WHERE city = ? AND id != ? LIMIT 3";
+        return $this->fetchAll($sql, [$city, $excludeId]);
+    }
+
+    public function getRandomProducts($limit, $excludeId)
+    {
+        $sql = "SELECT * FROM product WHERE id != ? ORDER BY RAND() LIMIT ?";
+        return $this->fetchAll($sql, [$excludeId, $limit]);
+    }
 }

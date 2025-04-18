@@ -36,5 +36,7 @@ class ProductController extends BaseController
             'price_range' => $priceRange
         ]);
     }
+
+    
 }
 ?>

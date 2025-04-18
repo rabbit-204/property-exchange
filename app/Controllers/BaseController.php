@@ -8,7 +8,7 @@ class BaseController
     protected function view($view_path, array $data = [])
     {
         foreach ($data as $key => $value) {
-            $$key = $value; // Tạo biến động với tên là key và giá trị là value
+            $$key = $value; 
         }
         $view_path = self::VIEW_FOLDER_NAME . '/' . str_replace('.','/',$view_path) .'.php';
         return require $view_path;
