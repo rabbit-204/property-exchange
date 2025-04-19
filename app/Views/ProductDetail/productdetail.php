@@ -53,7 +53,6 @@
 
     .contact-card {
         background: #fff;
-        /* Đảm bảo card có nền trắng */
         padding: 20px;
         border: 1px solid #ddd;
         border-radius: 8px;
@@ -172,6 +171,54 @@
         position: relative;
         z-index: 1;
     }
+        .product-info {
+        display: flex;
+        flex-direction: row; /* Sắp xếp các phần tử theo hàng ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        gap: 20px; /* Khoảng cách giữa các phần tử */
+    }
+
+    .product-info .price {
+        order: 1; /* Giá nằm trước */
+        font-size: 27px;
+        font-weight: bold;
+    }
+
+    .product-info .details {
+        order: 2; /* Chi tiết nằm sau */
+        display: flex;
+        gap: 15px; /* Khoảng cách giữa các chi tiết */
+    }
+
+
+        @media (max-width: 768px) {
+        .product-info {
+            display: flex;
+            flex-direction: column; /* Chuyển các phần tử thành cột */
+            align-items: flex-start; /* Căn trái nội dung */
+            gap: 10px; /* Thêm khoảng cách giữa các phần tử */
+        }
+
+        .product-info .price {
+            order: 1; /* Đặt phần giá lên trên */
+            font-size: 30px; /* Điều chỉnh kích thước chữ */
+            font-weight: bold;
+        }
+
+        .product-info .details {
+            order: 2; /* Đặt phần diện tích, bedroom, toilet xuống dưới */
+            font-size: 30px;
+            display: flex;
+            flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ không gian */
+            gap: 10px; /* Thêm khoảng cách giữa các chi tiết */
+        }
+
+        .product-info .details span {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Thêm khoảng cách giữa icon và text */
+        }
+    }
     </style>
 </head>
 
@@ -253,16 +300,17 @@
                 Vị trí: <?= htmlspecialchars($product['location']) ?>
             </p>
             <h4 class="d-flex align-items-center">
-                <span class="text-primary fw-bold">
+            <div class="product-info">
+                <div class="price text-primary fw-bold">
                     Giá: <?= htmlspecialchars($product['formatted_price']) ?>
-                </span>
-                <span class="text-muted ms-2">(<?= htmlspecialchars($product['price_per_m2']) ?> /m²)</span>
-                <span class="vr mx-3"></span>
-                <span>
-                    <i class="fa fa-maximize"></i> <?= htmlspecialchars($product['area']) ?> m²
-                    <i class="fa fa-bed ms-3"></i> <?= htmlspecialchars($product['bedrooms']) ?>
-                    <i class="fa fa-bath ms-3"></i> <?= htmlspecialchars($product['toilets']) ?>
-                </span>
+                    <span class="text-muted ms-2">(<?= htmlspecialchars($product['price_per_m2']) ?> /m²)</span>
+                </div>
+                <div class="details">
+                    <span><i class="fa fa-maximize"></i> <?= htmlspecialchars($product['area']) ?> m²</span>
+                    <span><i class="fa fa-bed"></i> <?= htmlspecialchars($product['bedrooms']) ?></span>
+                    <span><i class="fa fa-bath"></i> <?= htmlspecialchars($product['toilets']) ?></span>
+                </div>
+            </div>
             </h4>
         </div>
         <div class="mt-4">
@@ -335,7 +383,7 @@
         </div>
     </div>
 
-    <div class="mt-5" style="margin-left: 100px; margin-right: 100px;">
+    <div class="mt-5" style="margin-left: 50px; margin-right: 50px;">
         <h5 style="color: #1565C0; font-weight: bold;  margin-bottom: 20px;">Vị trí trên bản đồ</h5>
         <div id="map" style="width: 100%; height: 400px; border: 1px solid #ddd;"></div>
     </div>

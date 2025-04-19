@@ -22,6 +22,75 @@
         <?php if (!empty($extraCSS)): ?>
             <link rel="stylesheet" href="<?= $extraCSS ?>">
         <?php endif; ?>
+        <style>
+            @media (max-width: 1100px) {
+            .search-container .row {
+                justify-content: center;
+                text-align: center; 
+            }
+
+            .filter-col {
+                flex: 0 0 100%; 
+                max-width: 100%;
+                margin-bottom: 15px; 
+            }
+
+            .btn-filter, .btn-search {
+                width: 100%; 
+                margin-bottom: 10px;
+            }
+        }
+
+            @media (max-width: 363px) {
+            .nav-tabs {
+                display: flex;
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 5px; 
+            }
+
+            .nav-tabs .nav-item {
+                flex: 1 1 calc(50% - 10px); 
+                text-align: center; 
+            }
+
+            .nav-tabs .nav-link {
+                white-space: nowrap; 
+                padding: 10px; 
+                font-size: 14px; 
+            }
+        }
+            @media (max-width: 500px) {
+            .pagination {
+                display: flex
+                justify-content: center; 
+            }
+
+            .pagination .page-item:first-child .page-link, 
+            .pagination .page-item:last-child .page-link { 
+                padding-right: 15px !important; 
+                padding-left: 15px  !important; 
+            }
+
+            .pagination .page-item:first-child,
+            .pagination .page-item:last-child{
+                display: hidden;
+            }
+
+            .pagination .page-link {
+                padding: 8px 12px; 
+                font-size: 14px; 
+            }
+        }
+
+            @media (max-width: 449px) {
+            .pagination .page-item:first-child, 
+            .pagination .page-item:last-child { 
+                display: none !important; 
+            }
+        }
+               
+        </style>
     </head>
 
     <body>
@@ -184,7 +253,7 @@
 
             if (searchButton && searchBar) {
                 searchButton.addEventListener("click", function () {
-                    searchBar.classList.toggle("active"); // Thêm hoặc xóa class "active"
+                    searchBar.classList.toggle("active"); 
                 });
             }
 
@@ -196,7 +265,7 @@
                         if (keyword) {
                             const urlParams = new URLSearchParams(window.location.search);
                             urlParams.set('search', keyword);
-                            urlParams.set('page', 1); // Reset về trang 1
+                            urlParams.set('page', 1); 
                             window.location.href = `?${urlParams.toString()}`;
                         }
                     }
@@ -216,7 +285,7 @@
                     urlParams.set('city', city);
                     urlParams.set('type_of_real_estate', type);
                     urlParams.set('price_range', price);
-                    urlParams.set('page', 1); // Reset về trang 1
+                    urlParams.set('page', 1); 
 
                     window.location.href = `?${urlParams.toString()}`;
                 });

@@ -79,19 +79,19 @@ body {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding-right: 2.5rem; /* chừa chỗ bên phải cho icon */
-    background-color: #1e4c45; /* hoặc màu nền bạn đang dùng */
+    padding-right: 2.5rem; 
+    background-color: #1e4c45;
     color: white;
     border: 1px solid #ccc;
   }
   
-  /* Tạo icon mũi tên bằng CSS */
+
   .filter-col {
     position: relative;
   }
   
   .filter-col::after {
-    content: '▼'; /* Mũi tên xuống */
+    content: '▼'; 
     position: absolute;
     right: 15px;
     bottom: 12px;
@@ -209,13 +209,13 @@ body {
   }
 
   .search-bar {
-    max-height: 0; /* Ẩn thanh tìm kiếm ban đầu */
-    overflow: hidden; /* Ẩn nội dung khi thanh bị thu nhỏ */
-    transition: max-height 0.8s ease-in-out; /* Hiệu ứng trượt mượt */
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.8s ease-in-out; 
 }
 
 .search-bar.active {
-    max-height: 100px; /* Chiều cao tối đa khi hiển thị */
+    max-height: 100px; 
 }
 .form-control{
     background-color: white;
