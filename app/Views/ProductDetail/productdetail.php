@@ -21,6 +21,14 @@
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="/Views/teamplate/style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e9e=" crossorigin="" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <!-- CSS riêng -->
     <?php if (!empty($extraCSS)): ?>
@@ -171,52 +179,68 @@
         position: relative;
         z-index: 1;
     }
-        .product-info {
+
+    .product-info {
         display: flex;
-        flex-direction: row; /* Sắp xếp các phần tử theo hàng ngang */
-        align-items: center; /* Căn giữa theo chiều dọc */
-        gap: 20px; /* Khoảng cách giữa các phần tử */
+        flex-direction: row;
+        /* Sắp xếp các phần tử theo hàng ngang */
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+        gap: 20px;
+        /* Khoảng cách giữa các phần tử */
     }
 
     .product-info .price {
-        order: 1; /* Giá nằm trước */
+        order: 1;
+        /* Giá nằm trước */
         font-size: 27px;
         font-weight: bold;
     }
 
     .product-info .details {
-        order: 2; /* Chi tiết nằm sau */
+        order: 2;
+        /* Chi tiết nằm sau */
         display: flex;
-        gap: 15px; /* Khoảng cách giữa các chi tiết */
+        gap: 15px;
+        /* Khoảng cách giữa các chi tiết */
     }
 
 
-        @media (max-width: 768px) {
+    @media (max-width: 768px) {
         .product-info {
             display: flex;
-            flex-direction: column; /* Chuyển các phần tử thành cột */
-            align-items: flex-start; /* Căn trái nội dung */
-            gap: 10px; /* Thêm khoảng cách giữa các phần tử */
+            flex-direction: column;
+            /* Chuyển các phần tử thành cột */
+            align-items: flex-start;
+            /* Căn trái nội dung */
+            gap: 10px;
+            /* Thêm khoảng cách giữa các phần tử */
         }
 
         .product-info .price {
-            order: 1; /* Đặt phần giá lên trên */
-            font-size: 30px; /* Điều chỉnh kích thước chữ */
+            order: 1;
+            /* Đặt phần giá lên trên */
+            font-size: 30px;
+            /* Điều chỉnh kích thước chữ */
             font-weight: bold;
         }
 
         .product-info .details {
-            order: 2; /* Đặt phần diện tích, bedroom, toilet xuống dưới */
+            order: 2;
+            /* Đặt phần diện tích, bedroom, toilet xuống dưới */
             font-size: 30px;
             display: flex;
-            flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ không gian */
-            gap: 10px; /* Thêm khoảng cách giữa các chi tiết */
+            flex-wrap: wrap;
+            /* Cho phép xuống dòng nếu không đủ không gian */
+            gap: 10px;
+            /* Thêm khoảng cách giữa các chi tiết */
         }
 
         .product-info .details span {
             display: flex;
             align-items: center;
-            gap: 5px; /* Thêm khoảng cách giữa icon và text */
+            gap: 5px;
+            /* Thêm khoảng cách giữa icon và text */
         }
     }
     </style>
@@ -280,13 +304,16 @@
                         <form id="paymentForm">
                             <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
                             <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
-                            <input type="hidden" name="product_price" value="<?= htmlspecialchars($product['price']) ?>">
-                            <button type="button" id="payButton" class="btn btn-success w-100">Thanh toán qua ngân hàng</button>
+                            <input type="hidden" name="product_price"
+                                value="<?= htmlspecialchars($product['price']) ?>">
+                            <button type="button" id="payButton" class="btn btn-success w-100">Thanh toán qua ngân
+                                hàng</button>
                         </form>
                         <div id="paymentResult" class="mt-3" style="display: none;">
                             <h5 style="margin-bottom: 20px"><strong>Chuyển khoản cho chủ sở hữu</strong></h5>
                             <p class="mt-2">
-                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">nhấn vào đây để nhận mã QR</a>
+                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">nhấn vào đây
+                                    để nhận mã QR</a>
                             </p>
                         </div>
                     </div>
@@ -300,17 +327,17 @@
                 Vị trí: <?= htmlspecialchars($product['location']) ?>
             </p>
             <h4 class="d-flex align-items-center">
-            <div class="product-info">
-                <div class="price text-primary fw-bold">
-                    Giá: <?= htmlspecialchars($product['formatted_price']) ?>
-                    <span class="text-muted ms-2">(<?= htmlspecialchars($product['price_per_m2']) ?> /m²)</span>
+                <div class="product-info">
+                    <div class="price text-primary fw-bold">
+                        Giá: <?= htmlspecialchars($product['formatted_price']) ?>
+                        <span class="text-muted ms-2">(<?= htmlspecialchars($product['price_per_m2']) ?> /m²)</span>
+                    </div>
+                    <div class="details">
+                        <span><i class="fa fa-maximize"></i> <?= htmlspecialchars($product['area']) ?> m²</span>
+                        <span><i class="fa fa-bed"></i> <?= htmlspecialchars($product['bedrooms']) ?></span>
+                        <span><i class="fa fa-bath"></i> <?= htmlspecialchars($product['toilets']) ?></span>
+                    </div>
                 </div>
-                <div class="details">
-                    <span><i class="fa fa-maximize"></i> <?= htmlspecialchars($product['area']) ?> m²</span>
-                    <span><i class="fa fa-bed"></i> <?= htmlspecialchars($product['bedrooms']) ?></span>
-                    <span><i class="fa fa-bath"></i> <?= htmlspecialchars($product['toilets']) ?></span>
-                </div>
-            </div>
             </h4>
         </div>
         <div class="mt-4">
@@ -319,7 +346,8 @@
             <p>Nhà vị trí đẹp, giá tốt. Phù hợp an cư lâu dài, làm văn phòng CTY, đầu tư giữ tiền, tăng giá trị tài sản.
             </p>
             <ul>
-                <li><strong>Diện tích:</strong> (Rộng x dài: <?= htmlspecialchars($product['dimensions'] ?? '-') ?>)
+                <li><strong>Diện tích:</strong> (dài x rộng:
+                    <?= htmlspecialchars($product['length'] . " x " . $product['width']) ?>)
                     <?= htmlspecialchars($product['area']) ?>m²</li>
                 <li><strong>Kết cấu:</strong> <?= htmlspecialchars($product['floors']) ?> lầu,
                     <?= htmlspecialchars($product['bedrooms']) ?>PN, <?= htmlspecialchars($product['toilets']) ?>WC</li>
@@ -362,7 +390,7 @@
                         <tbody>
                             <tr>
                                 <td>Rộng x Dài</td>
-                                <td><?= htmlspecialchars($product['dimensions'] ?? '-') ?></td>
+                                <td><?= htmlspecialchars($product['length'] . " x " . $product['width'] ) ?></td>
                             </tr>
                             <tr>
                                 <td>Số tầng</td>
@@ -383,8 +411,8 @@
         </div>
     </div>
 
-    <div class="mt-5" style="margin-left: 50px; margin-right: 50px;">
-        <h5 style="color: #1565C0; font-weight: bold;  margin-bottom: 20px;">Vị trí trên bản đồ</h5>
+    <div style="margin-left: 50px; margin-right: 50px;"> 
+        <h5 style="margin-bottom: 10px; color: #1565C0; font-weight: bold;">Vị trí trên bản đồ</h5>
         <div id="map" style="width: 100%; height: 400px; border: 1px solid #ddd;"></div>
     </div>
 
@@ -433,55 +461,58 @@
     </div>
 
     <script>
-        document.getElementById('payButton').addEventListener('click', function () {
+    document.getElementById('payButton').addEventListener('click', function() {
         const formData = new FormData(document.getElementById('paymentForm'));
 
         fetch('index.php?controller=payment&action=create', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Hiển thị mã QR và liên kết thanh toán
-                document.getElementById('paymentResult').style.display = 'block';
-                document.getElementById('checkoutLink').href = data.checkoutUrl;
-            } else {
-                alert(data.message || 'Có lỗi xảy ra khi tạo liên kết thanh toán.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Có lỗi xảy ra khi gửi yêu cầu thanh toán.');
-        });
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hiển thị mã QR và liên kết thanh toán
+                    document.getElementById('paymentResult').style.display = 'block';
+                    document.getElementById('checkoutLink').href = data.checkoutUrl;
+                } else {
+                    alert(data.message || 'Có lỗi xảy ra khi tạo liên kết thanh toán.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi gửi yêu cầu thanh toán.');
+            });
     });
     document.getElementById('showPhoneBtn').addEventListener('click', function() {
         const phoneNumber = document.getElementById('phoneNumber');
         phoneNumber.style.display = 'block';
         this.style.display = 'none';
     });
-
-    function initMap() { 
-        const productLocation = {
-            lat: <?= htmlspecialchars($product['latitude']) ?>,
-            lng: <?= htmlspecialchars($product['longitude']) ?>
-        };
-
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 15,
-            center: productLocation,
-        });
-
-        new google.maps.Marker({
-            position: productLocation,
-            map: map,
-            title: "<?= htmlspecialchars($product['name']) ?>"
-        });
-    }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNGuzYkh-wYg0zzUjK6-3tIOdS44PtFBw&callback=initMap"
-        async defer></script>
 
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e=" crossorigin=""></script>
+
+    <script>
+    const map = L.map('map').setView([<?= htmlspecialchars($product['latitude']) ?>,
+        <?= htmlspecialchars($product['longitude']) ?>
+    ], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([<?= htmlspecialchars($product['latitude']) ?>, <?= htmlspecialchars($product['longitude']) ?>])
+        .addTo(map)
+        .bindPopup("<b><?= htmlspecialchars($product['name']) ?></b><br><?= htmlspecialchars($product['location']) ?>")
+        .openPopup();
+    </script>
+
+
+    <!-- Leaflet JS -->
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
