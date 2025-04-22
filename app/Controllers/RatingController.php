@@ -30,5 +30,6 @@ class RatingController extends BaseController
             echo "Vui lòng điền đầy đủ thông tin đánh giá.";
         }
     }
+
 }
 ?>
