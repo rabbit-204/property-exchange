@@ -62,7 +62,7 @@
         }
             @media (max-width: 500px) {
             .pagination {
-                display: flex
+                display: flex;
                 justify-content: center; 
             }
 

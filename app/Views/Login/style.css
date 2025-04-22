@@ -1,74 +1,119 @@
+body {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.login-container {
+.container {
     width: 900px;
     height: 500px;
     display: flex;
+    position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
+    padding: 0;
 }
-.form-section {
-    flex: 1;
+
+.form-container {
+    width: 100%;
+    height: 100%;
+    display: none;
+    /* Ẩn form mặc định */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease , transform 0.5s ease;
     background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.form-container.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    /* Hiển thị form khi có lớp active */
+}
+#registerForm {
+    transform: translateX(500px); /* Hiệu ứng trượt xuống khi ẩn */
+}
+
+#registerForm.active {
+    transform: translateX(0); /* Hiệu ứng trượt lên khi hiện */
+}
+
+.form-section {
+    width: 100%;
+    height: 100%;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    /* border-radius: 10px; */
+
 }
+
 .form-section h1 {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
 }
-.form-section .form-check-label {
-    font-size: 14px;
-}
+
 .form-section button {
-    background-color: #00bfa6;
+    background-color: #1f4b43;
+    font-weight: 600;
     color: #fff;
 }
+
 .form-section button:hover {
-    background-color: #009f8c;
+    background-color: #1f4b43ea;
 }
-.social-login a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    text-decoration: none;
-    color: #000;
-    font-size: 18px;
-}
+
 .image-section {
-    flex: 1;
-    background: url('https://via.placeholder.com/450') no-repeat center center/cover;
+    background-image: url("https://media.istockphoto.com/id/1396856251/photo/colonial-house.jpg?s=612x612&w=0&k=20&c=_tGiix_HTQkJj2piTsilMuVef9v2nUwEkSC9Alo89BM=");
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+
 }
+
+
 .image-section h2 {
     font-size: 24px;
     margin-bottom: 10px;
 }
+
 .image-section p {
-    font-size: 14px;
+    font-size: 22px;
     margin-bottom: 20px;
+    color: white;
 }
-.image-section a {
-    padding: 10px 20px;
+
+.image-section button {
+    padding: 10px 50px;
     font-size: 16px;
-    color: #00bfa6;
+    color: #1F4B43;
+    font-weight: 700;
     background-color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
 }
-.image-section a:hover {
+
+.image-section button:hover {
     background-color: #f0f0f0;
 }

@@ -5,7 +5,7 @@ class LoginModel extends BaseModel {
     // Kiểm tra thông tin đăng nhập
     public function login($email, $password)
     {
-        $sql = "SELECT * FROM users WHERE email = :email AND password = :password";
+        $sql = "SELECT * FROM account WHERE email = :email AND password = :password";
         return $this->fetchOne($sql, [
             ':email' => $email,
             ':password' => $password
@@ -13,12 +13,14 @@ class LoginModel extends BaseModel {
     }
 
     // Đăng ký người dùng mới
-    public function register($name, $email, $password)
+    public function register($fullname,$email, $phone, $password,$role)
     {
-        $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+        $sql = "INSERT INTO account (fullname, email, phone, role, password) VALUES (:fullname, :email, :phone, :role, :password)";
         return $this->query($sql, [
-            ':name' => $name,
+            ':fullname' => $fullname,
             ':email' => $email,
+            ':phone' => $phone,
+            ':role' => $role,
             ':password' => $password
         ]);
     }

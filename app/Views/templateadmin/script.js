@@ -40,3 +40,33 @@ document.addEventListener("DOMContentLoaded", function () {
     
 }
 );
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('ratingForm');
+    const submitButton = document.getElementById('submitRating');
+
+    submitButton.addEventListener('click', function () {
+        // Lấy giá trị rating và message
+        const rating = form.querySelector('input[name="star-radio"]:checked')?.value;
+        const message = form.querySelector('textarea[name="message"]').value;
+        console.log(rating, message);
+        if (!rating) {
+            alert('Vui lòng chọn số sao để đánh giá!');
+            return;
+        }
+
+        // Gửi dữ liệu đến server qua AJAX
+        $.ajax({
+            url: '/index.php?controller=rating&action=submit', // Thay đổi URL phù hợp với controller của bạn
+            method: 'POST',
+            data: { rating, message },
+            success: function (response) {
+                console.log(response);
+                alert('Cảm ơn bạn đã đánh giá!');
+                form.reset(); // Reset form sau khi gửi thành công
+            },
+            error: function () {
+                alert('Có lỗi xảy ra, vui lòng thử lại!');
+            }
+        });
+    });
+});
