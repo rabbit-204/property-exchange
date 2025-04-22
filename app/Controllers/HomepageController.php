@@ -5,5 +5,9 @@ class HomepageController extends BaseController
     {
         return $this->view('homepage.index');  //tên folder bên view + .index
     }
+    public function admin()
+    {
+        return $this->view('homepage.admin');  //tên folder bên view + .index
+    }
 }
 ?>

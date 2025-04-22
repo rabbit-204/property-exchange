@@ -8,14 +8,18 @@ class BaseController
     protected function view($view_path, array $data = [])
     {
         foreach ($data as $key => $value) {
-            $$key = $value; // Tạo biến động với tên là key và giá trị là value
+            $$key = $value; 
         }
         $view_path = self::VIEW_FOLDER_NAME . '/' . str_replace('.','/',$view_path) .'.php';
         return require $view_path;
     }
     protected function model($model_path)
     {
-        $model_path = self::MODEL_FOLDER_NAME . '/' . str_replace('.','/',$model_path) .'.php';
-        return require $model_path;
+        $modelClassName = ucfirst(strtolower($model_path)) . 'Model';
+        $modelFilePath = self::MODEL_FOLDER_NAME . '/' . $modelClassName . '.php';
+        
+        require_once $modelFilePath;
+
+        return new $modelClassName();  // <- Tạo object model và trả về
     }
 }

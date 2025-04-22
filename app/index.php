@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "./Controllers/BaseController.php";
 $controller = ($_REQUEST['controller'] ?? 'homepage');
 $controllerName = ucfirst((strtolower($controller)) . 'Controller');
