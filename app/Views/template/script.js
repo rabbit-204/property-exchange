@@ -96,3 +96,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+{/* <script> */}
+var swiper = new Swiper(".mySwiper", {
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  slidesPerView: 1,
+  spaceBetween: 30,
+  autoplay: {
+    delay: 5000,
+  },
+});
+{/* </script> */}
+
+

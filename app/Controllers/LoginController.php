@@ -82,7 +82,7 @@ class LoginController extends BaseController
                     setcookie('token', json_encode($user), time() + (86400 * 1), "/"); // Cookie tồn tại trong 30 ngày
                 }
                 if ($user['role'] === 'admin') {
-                    header('Location: /index.php?controller=homepageadmin&action=index');
+                    header('Location: /index.php?controller=homepage&action=admin');
                     exit;
                 } else {
                     header('Location: /index.php?controller=homepage&action=index');

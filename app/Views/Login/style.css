@@ -89,7 +89,25 @@ body {
     overflow: hidden;
 
 }
+#showLogin1 {
+    display: none;
+}
+#showRegister1 {
+    display: none;
+}
+@media (max-width: 767px) {
 
+    .image-section {
+        display: none;
+    }
+    #showLogin1 {
+        display: block;
+    }
+    #showRegister1 {
+        display: block;
+    }
+    
+}
 
 .image-section h2 {
     font-size: 24px;

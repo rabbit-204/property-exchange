@@ -34,6 +34,50 @@
     gap: 10px;
     /* margin: 20px; */
 }
+
+/* ---------------------------- */
+.swiper-container-wrapper {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto; /* Căn giữa */
+    padding: 20px 15px; /* Nếu muốn hơi cách lề xíu cho đẹp */
+}
+
+.province-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.province-card img {
+    width: 100%;
+    height: 320px; /* hoặc auto */
+    object-fit: cover;
+    display: block;
+}
+
+.province-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    background: rgba(0,0,0,0.4); /* Nền đen mờ */
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.province-info h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.province-info p {
+    font-size: 14px;
+    margin: 4px 0 0;
+}
+/* ---------------------------- */
+
+
 .slider {
     display: flex;
     overflow: hidden;
@@ -67,6 +111,11 @@
     padding: 10px;
     cursor: pointer;
 } */
+
+
+
+
+
 .box_vision{
 
     margin: auto;
@@ -81,7 +130,8 @@
     /* padding: 20px; */
 }
 .box_vision_reverse{
-    flex-wrap: wrap-reverse;
+    flex-direction: row-reverse;
+    /* flex-wrap: wrap-reverse; */
     /* transform: translatex(100%); */
     /* background: #f0f1f3; */
 }
@@ -105,6 +155,23 @@
     opacity: 1;
     transform: translateX(0);
 
+}
+@media screen and (max-width: 768px) {
+    .box_vision_reverse>#loadImg{
+    
+        transform: translatey(30%);
+    }
+    .box_vision_reverse>#loadImg.show{
+        transform: translatex(0);
+    }
+    .box_vision>img{
+        transform: translatey(30%);
+    }
+    .box_vision>img.show{
+        transform: translateX(0);
+    
+    }
+    
 }
 .box_vision-content{
     width: 50%;

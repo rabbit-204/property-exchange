@@ -6,6 +6,7 @@ class ProductController extends BaseController
 {
     private $productModel;
     public function __construct() {
+        parent::__construct();
         $this->productModel = new ProductModel();
     }
 
