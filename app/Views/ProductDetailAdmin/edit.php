@@ -230,8 +230,12 @@
             <div class="d-flex flex-wrap mb-3 gap-2" id="currentPicturesContainer">
                 <?php if (!empty($product['pictures'])): ?>
                     <?php foreach (json_decode($product['pictures'], true) as $key => $pic): ?>
-                        <div class="position-relative">
+                        <div class="position-relative" id="image-container-<?= $key ?>">
                             <img src="<?= htmlspecialchars($pic) ?>" class="img-thumbnail" style="height: 150px;">
+                            <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                onclick="deleteImage('<?= $product['id'] ?>', '<?= htmlspecialchars($pic) ?>', <?= $key ?>)">
+                                <i class="fas fa-times"></i> X
+                            </button>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -255,12 +259,39 @@
 
         <div class="col-12 mt-4">
             <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-            <a href="index.php?controller=product&action=admin" class="btn btn-secondary">Hủy</a>
+            <a href="index.php?controller=productdetail&action=admin&id=<?php echo $product['id']; ?>" class="btn btn-secondary">Hủy</a>
         </div>
     </form>
 </div>
 
 <script>
+    function deleteImage(productId, imagePath, imageIndex) {
+        if (!confirm('Bạn có chắc chắn muốn xóa ảnh này?')) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('id', productId);
+        formData.append('image_path', imagePath);
+
+        fetch('index.php?controller=product&action=deleteImage', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('image-container-' + imageIndex).remove();
+                    alert(data.message);
+                } else {
+                    alert('Lỗi: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Đã xảy ra lỗi khi xóa ảnh');
+            });
+    }
     function previewNewImages(event) {
         const input = event.target;
         const previewContainer = document.getElementById('newPicturesPreview');

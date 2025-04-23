@@ -12,11 +12,18 @@ class ProductController extends BaseController
     {
         return $this->view('ProductAdmin.index', ['productFormData' => []]);
     }
-    public function delete()
-    {
-        $id = $_GET['id'];
-        $this->productModel->deleteProduct($id);
-        header('Location: ?action=admin');
+    public function delete() {
+        $productId = $_GET['id'];
+    
+        if ($this->productModel->deleteProduct($productId)) {
+            $_SESSION['message'] = "Sản phẩm đã được xóa thành công!";
+            header('Location: index.php?controller=product&action=admin');
+            exit;
+        } else {
+            $_SESSION['message'] = "Lỗi khi xóa sản phẩm. Vui lòng thử lại.";
+            header('Location: index.php?controller=product&action=admin');
+            exit;
+        }
     }
 
 
@@ -245,8 +252,49 @@ class ProductController extends BaseController
             $_SESSION['message_type'] = 'error';
         }
 
-        header("Location: index.php?controller=product&action=admin");
-        exit;
+            header('Location: index.php?controller=productdetail&action=admin&id=' . urlencode($existingProduct['id']));
+            exit;
+    }
+
+    public function deleteImage() {
+        if (!isset($_POST['id']) || !isset($_POST['image_path'])) {
+            echo json_encode(['success' => false, 'message' => 'Thiếu thông tin cần thiết']);
+            return;
+        }
+        
+        $id = $_POST['id'];
+        $imagePath = $_POST['image_path'];
+        
+        // Lấy thông tin sản phẩm
+        $product = $this->productModel->getProductById($id);
+        
+        if (!$product) {
+            echo json_encode(['success' => false, 'message' => 'Không tìm thấy sản phẩm']);
+            return;
+        }
+        
+        // Kiểm tra xem ảnh có tồn tại trong mảng pictures không
+        $pictures = json_decode($product['pictures'], true);
+        $index = array_search($imagePath, $pictures);
+        
+        if ($index === false) {
+            echo json_encode(['success' => false, 'message' => 'Không tìm thấy ảnh trong sản phẩm']);
+            return;
+        }
+        
+        // Xóa ảnh khỏi mảng
+        unset($pictures[$index]);
+        $pictures = array_values($pictures); // Reset index
+        
+        // Cập nhật database
+        $this->productModel->update($id, ['pictures' => json_encode($pictures)]);
+        
+        // Xóa file ảnh nếu tồn tại
+        if (file_exists($imagePath)) {
+            @unlink($imagePath);
+        }
+        
+        echo json_encode(['success' => true, 'message' => 'Đã xóa ảnh thành công']);
     }
 }
 

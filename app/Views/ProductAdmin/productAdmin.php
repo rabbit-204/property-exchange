@@ -31,6 +31,14 @@
 </head>
 
 <body>
+
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-info">
+            <?= $_SESSION['message']; ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
+    
     <form id="searchForm" class="d-flex justify-content-between align-items-center mb-3 px-2">
         <input type="text" name="search" id="searchInput" class="form-control me-2" style="max-width: 600px;"
             placeholder="Tìm kiếm theo tên hoặc vị trí...">
