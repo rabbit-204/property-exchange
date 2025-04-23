@@ -55,5 +55,22 @@ class ProductdetailController extends BaseController
 
         return $this->view('productdetail.index', ['product' => $product, 'suggestedProducts' => $suggestedProducts]);
     }
+
+    public function admin()
+    {
+        $id = isset($_GET['id']) ? trim($_GET['id']) : null;
+
+        if (!$id) {
+            die('ID không hợp lệ.');
+        }
+
+        $product = $this->productModel->getProductById($id);
+
+        if (!$product) {
+            die('Sản phẩm không tồn tại.');
+        }
+
+        return $this->view('productDetailAdmin.index', ['product' => $product]);
+    }
 }
 ?>
