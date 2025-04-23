@@ -46,8 +46,13 @@
 
                 </ul>
                 <i style="display: none" class="fa-solid fa-bars"></i>
-
-                <button class="btn btn-outline-dark" id="btnLogin">Login</button>
+                {if (isset($_SESSION['user'])){
+                    <button class="btn btn-outline-dark" id="btnLogin">Login</button>
+                }
+                else {
+                    <button class="btn btn-outline-dark" id="btnLogin">Logout</button>
+                }}
+                <!-- <button class="btn btn-outline-dark" id="btnLogin">Login</button> -->
 
                 <div class="_sidebar" id="sidebar">
                     <i onclick="handleCloseSidebar()" class="fa-solid fa-x"></i>

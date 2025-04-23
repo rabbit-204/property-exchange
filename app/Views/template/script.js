@@ -40,6 +40,32 @@ document.addEventListener("DOMContentLoaded", function () {
     
 }
 );
+document.addEventListener("DOMContentLoaded", function () {
+    const btnLogout = document.getElementById("btnLogout");
+    if (btnLogout) {
+        btnLogout.addEventListener("click", function () {
+            // console.log(document.cookie);
+            // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            // console.log(document.cookie);
+            $.ajax({
+                url: '/index.php?controller=login&action=logout', // Thay đổi URL phù hợp với controller của bạn
+                method: 'POST',
+                success: function (response) {
+                    console.log(response);
+                    alert('Đăng xuất thành công!');
+                    window.location.href = "/index.php?controller=login&action=index"; // Chuyển hướng về trang đăng nhập
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+            // window.location.href = "/index.php?controller=login&action=index";
+        });
+    }
+
+    
+}
+);
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('ratingForm');
     const submitButton = document.getElementById('submitRating');
