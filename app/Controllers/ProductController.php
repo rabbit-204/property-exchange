@@ -231,8 +231,7 @@ class ProductController extends BaseController
                             }
                         }
                     }
-            
-                    $data['pictures'] = json_encode([]); 
+                    $data['pictures'] = json_encode([]);
                 }
             }
 
