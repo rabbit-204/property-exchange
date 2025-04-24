@@ -43,6 +43,7 @@ $extraJS = $extraJS ?? "";
                 <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=index">Tin tức</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=index">Liên hệ</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=account&action=index">Tài khoản</a></li>
 
             </ul>
             <i style="display: none" class="fa-solid fa-bars"></i>
