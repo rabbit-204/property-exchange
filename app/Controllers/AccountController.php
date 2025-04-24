@@ -133,4 +133,31 @@ class AccountController extends BaseController {
         
         return $this->view('account.change_password');
     }
+    public function admin() {
+        $keyword = $_GET['search'] ?? '';
+        if ($keyword) {
+            $accounts = $this->accountModel->searchAccounts($keyword);
+        } else {
+            $accounts = $this->accountModel->getAllAccounts();
+        }
+        $this->view('AccountAdmin.index', ['accounts' => $accounts, 'keyword' => $keyword]);
+    }
+
+    public function toggleActive() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $isActive = $_POST['isActive'];
+    
+            $success = $this->accountModel->toggleActive($id, $isActive);
+    
+            if ($success) {
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request']);
+        }
+    }
+
 }

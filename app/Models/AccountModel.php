@@ -54,4 +54,19 @@ class AccountModel extends BaseModel {
         $sql = "UPDATE {$this->table} SET password = ? WHERE id = ?";
         return $this->query($sql, [$hashedPassword, $id]);
     }
+
+    public function getAllAccounts() {
+        $sql = "SELECT id, fullname, email, phone, role, isActive FROM {$this->table} WHERE role = 'user'";
+        return $this->fetchAll($sql);
+    }
+    public function toggleActive($id, $isActive) {
+        $sql = "UPDATE {$this->table} SET isActive = ? WHERE id = ?";
+        return $this->query($sql, [$isActive, $id]);
+    }
+    public function searchAccounts($keyword) {
+        $keyword = "%" . $keyword . "%";
+        $sql = "SELECT id, fullname, email, phone, role, isActive FROM {$this->table} 
+                WHERE (fullname LIKE ? OR email LIKE ?) AND role = 'user'";
+        return $this->fetchAll($sql, [$keyword, $keyword]);
+    }
 }

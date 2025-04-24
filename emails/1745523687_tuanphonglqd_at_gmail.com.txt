@@ -1,0 +1,15 @@
+To: tuanphonglqd@gmail.com
+Subject: Password Reset Request
+
+Hello,
+
+You requested a password reset. Click the link below to reset your password:
+
+http://localhost/index.php?controller=login&action=resetPassword&token=0845898f26168c2836ce14964efe7e71fe25ff7ef389ab004ba747dcd185b485
+
+This link will expire in 1 hour.
+
+If you did not request this, please ignore this email.
+
+Regards,
+Your Website Team
