@@ -11,7 +11,6 @@ class LoginController extends BaseController
     public function index()
     {
         if (isset($_SESSION['user']) || isset($_COOKIE['token'])) {
-            $_SESSION['user'] = json_decode($_COOKIE['token'],true) ?? $_SESSION['user'];
             $_SESSION['user'] = json_decode($_COOKIE['token'], true) ?? $_SESSION['user'];
             // echo "<script>console.log('Cookie: " . $_SESSION['username'] . "');</script>";
             header('Location: /index.php?controller=homepage&action=index');
@@ -76,16 +75,14 @@ class LoginController extends BaseController
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
                 }
-                
 
                 $_SESSION['user'] = $user;
                 if ($remember) {
                     // Nếu có checkbox "Remember Me", lưu thông tin vào cookie
                     setcookie('token', json_encode($user), time() + (86400 * 1), "/"); // Cookie tồn tại trong 30 ngày
-                } 
-                
+                }
                 if ($user['role'] === 'admin') {
-                    header('Location: /index.php?controller=homepage&action=admin');
+                    header('Location: /index.php?controller=homepageadmin&action=index');
                     exit;
                 } else {
                     header('Location: /index.php?controller=homepage&action=index');
@@ -100,7 +97,8 @@ class LoginController extends BaseController
             return $this->view('Login.index', ['error' => 'Please enter username and password']);
         }
     }
-    public function logout(){
+    public function logout()
+    {
         session_start();
         session_unset();
         session_destroy();
