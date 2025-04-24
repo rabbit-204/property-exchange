@@ -15,7 +15,9 @@ $extraJS = $extraJS ?? "";
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
@@ -23,7 +25,7 @@ $extraJS = $extraJS ?? "";
 
     <!-- CSS riêng -->
     <?php if (!empty($extraCSS)): ?>
-        <link rel="stylesheet" href="<?= $extraCSS ?>">
+    <link rel="stylesheet" href="<?= $extraCSS ?>">
     <?php endif; ?>
 </head>
 
@@ -37,31 +39,45 @@ $extraJS = $extraJS ?? "";
             <!-- <i class='' class="fa-solid fa-bars"></i> -->
             <div class="_logo">BKHome</div>
             <ul class="_navi">
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=index">Trang chủ</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=intro&action=index">Giới thiệu</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=product&action=index">Sản phẩm</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=index">Tin tức</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=index">Liên hệ</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=account&action=index">Tài khoản</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=homepage&action=index">Trang chủ</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=intro&action=index">Giới thiệu</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=product&action=index">Sản phẩm</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=post&action=index">Tin tức</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=contact&action=index">Liên hệ</a></li>
 
             </ul>
             <i style="display: none" class="fa-solid fa-bars"></i>
             <?php if (isset($_SESSION['user'])): ?>
-                <button class="btn btn-outline-dark" id="btnLogout">Logout</button>
+                <a href="index.php?controller=account&action=index" class="account-link">
+                    <img src="<?= isset($_SESSION['user']['img']) ? $_SESSION['user']['img'] : 'https://picsum.photos/200/300' ?>"
+                        class="rounded-circle img-fluid" style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;"
+                        alt="Profile" title="Xem trang cá nhân">
+                </a>
             <?php else: ?>
                 <button class="btn btn-outline-dark" id="btnLogin">Login</button>
             <?php endif; ?>
-            <!-- <button class="btn btn-outline-dark" id="btnLogin">Login</button> -->
 
             <div class="_sidebar" id="sidebar">
                 <i onclick="handleCloseSidebar()" class="fa-solid fa-x"></i>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=index">Trang chủ</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=intro&action=index">Giới thiệu</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=product&action=index">Sản phẩm</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=index">Tin tức</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=index">Liên hệ</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=homepage&action=index">Trang chủ</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=intro&action=index">Giới thiệu</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=product&action=index">Sản phẩm</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=post&action=index">Tin tức</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=contact&action=index">Liên hệ</a></div>
             </div>
         </nav>
 
@@ -90,7 +106,8 @@ $extraJS = $extraJS ?? "";
                     <!-- Đánh giá của khách hàng -->
                     <div class="testimonial">
                         <div class="d-flex gap-3">
-                            <img src="https://picsum.photos/200/300" class="rounded-circle img-fluid" style="width: 50px; height: 50px; object-fit: cover;" alt="img">
+                            <img src="https://picsum.photos/200/300" class="rounded-circle img-fluid"
+                                style="width: 50px; height: 50px; object-fit: cover;" alt="img">
                             <div class="text-start">
                                 <h4>Trần Thế Đại Phát</h4>
                                 <p class="sub-text">Người dùng lâu năm</p>
@@ -98,7 +115,8 @@ $extraJS = $extraJS ?? "";
                         </div>
 
                         <p class="review-text">
-                            Trải nghiệm tuyệt vời! Giao diện trực quan, dễ dàng tìm kiếm bất động sản phù hợp. Tôi đã tìm được ngôi nhà ưng ý chỉ trong vài phút.
+                            Trải nghiệm tuyệt vời! Giao diện trực quan, dễ dàng tìm kiếm bất động sản phù hợp. Tôi đã
+                            tìm được ngôi nhà ưng ý chỉ trong vài phút.
                         </p>
 
                         <!-- Nút điều hướng -->
@@ -123,38 +141,49 @@ $extraJS = $extraJS ?? "";
                     </div> -->
             </section>
             <section>
-                <form id="ratingForm" class="container my-5 d-flex flex-column align-items-center text-center mw-100" style="width:400px;">
+                <form id="ratingForm" class="container my-5 d-flex flex-column align-items-center text-center mw-100"
+                    style="width:400px;">
                     <h2 class="text-center">Đánh Giá Trang Web 🌟</h2>
                     <p class="text-center text-muted">Hãy cho chúng tôi biết cảm nhận của bạn về trang web này!</p>
                     <div class="rating ">
                         <input type="radio" id="star-1" name="star-radio" value="5">
                         <label for="star-1">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                <path pathLength="360"
+                                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                                </path>
                             </svg>
                         </label>
                         <input type="radio" id="star-2" name="star-radio" value="4">
                         <label for="star-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                <path pathLength="360"
+                                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                                </path>
                             </svg>
                         </label>
                         <input type="radio" id="star-3" name="star-radio" value="3">
                         <label for="star-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                <path pathLength="360"
+                                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                                </path>
                             </svg>
                         </label>
                         <input type="radio" id="star-4" name="star-radio" value="2">
                         <label for="star-4">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                <path pathLength="360"
+                                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                                </path>
                             </svg>
                         </label>
                         <input type="radio" id="star-5" name="star-radio" value="1">
                         <label for="star-5">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                <path pathLength="360"
+                                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                                </path>
                             </svg>
                         </label>
                     </div>
@@ -163,11 +192,7 @@ $extraJS = $extraJS ?? "";
                         <div class="outline"></div>
                         <div class="state state--default">
                             <div class="icon">
-                                <svg
-                                    width="1em"
-                                    height="1em"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
+                                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g style="filter: url(#shadow)">
                                         <path
@@ -179,11 +204,8 @@ $extraJS = $extraJS ?? "";
                                     </g>
                                     <defs>
                                         <filter id="shadow">
-                                            <fedropshadow
-                                                dx="0"
-                                                dy="1"
-                                                stdDeviation="0.6"
-                                                flood-opacity="0.5"></fedropshadow>
+                                            <fedropshadow dx="0" dy="1" stdDeviation="0.6" flood-opacity="0.5">
+                                            </fedropshadow>
                                         </filter>
                                     </defs>
                                 </svg>
@@ -197,21 +219,15 @@ $extraJS = $extraJS ?? "";
                         </div>
                         <div class="state state--sent">
                             <div class="icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    height="1em"
-                                    width="1em"
-                                    stroke-width="0.5px"
-                                    stroke="black">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em"
+                                    width="1em" stroke-width="0.5px" stroke="black">
                                     <g style="filter: url(#shadow)">
-                                        <path
-                                            fill="currentColor"
-                                            d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"></path>
-                                        <path
-                                            fill="currentColor"
-                                            d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z"></path>
+                                        <path fill="currentColor"
+                                            d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z">
+                                        </path>
+                                        <path fill="currentColor"
+                                            d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z">
+                                        </path>
                                     </g>
                                 </svg>
                             </div>
@@ -296,7 +312,7 @@ $extraJS = $extraJS ?? "";
 
     <!-- JS riêng -->
     <?php if (!empty($extraJS)): ?>
-        <script src="<?= $extraJS ?>"></script>
+    <script src="<?= $extraJS ?>"></script>
     <?php endif; ?>
 
 </body>

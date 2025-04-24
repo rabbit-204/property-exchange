@@ -16,33 +16,12 @@ class AccountModel extends BaseModel {
         return $this->fetchOne($sql, [$email]);
     }
     
-    // Lấy danh sách sản phẩm của tài khoản
-    public function getAccountProducts($id) {
-        $sql = "SELECT listProduct FROM {$this->table} WHERE id = ?";
-        $result = $this->fetchOne($sql, [$id]);
-        
-        if ($result && $result['listProduct']) {
-            $productIds = json_decode($result['listProduct'], true);
-            
-            // Now fetch the actual product details
-            if (!empty($productIds)) {
-                require_once __DIR__ . '/ProductModel.php';
-                $productModel = new ProductModel();
-                $products = [];
-                
-                foreach ($productIds as $productId) {
-                    $product = $productModel->getProductById($productId);
-                    if ($product) {
-                        $products[] = $product;
-                    }
-                }
-                
-                return $products;
-            }
-        }
-        
-        return [];
+    public function getFavoriteProducts($userId) {
+        require_once __DIR__ . '/FavoriteModel.php';
+        $favoriteModel = new FavoriteModel();
+        return $favoriteModel->getUserFavorites($userId);
     }
+    
     
     // Cập nhật thông tin tài khoản
     public function updateAccount($id, $data) {

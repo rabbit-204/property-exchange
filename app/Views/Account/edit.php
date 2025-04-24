@@ -65,10 +65,6 @@
                                     value="<?= htmlspecialchars($account['phone'] ?? '') ?>">
                             </div>
 
-                            <div class="mb-4">
-                                <a href="index.php?controller=account&action=changePassword" class="btn btn-outline-primary">Đổi mật khẩu</a>
-                            </div>
-
                             <div class="d-flex justify-content-between">
                                 <a href="index.php?controller=account&action=profile" class="btn btn-secondary">Quay
                                     lại</a>

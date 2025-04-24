@@ -21,11 +21,13 @@ class AccountController extends BaseController {
             die("Không tìm thấy thông tin tài khoản!");
         }
         
-        $products = $this->accountModel->getAccountProducts($userId);
+        
+        // Get favorite products
+        $favoriteProducts = $this->accountModel->getFavoriteProducts($userId);
         
         return $this->view('account.index', [
             'account' => $account,
-            'products' => $products
+            'favoriteProducts' => $favoriteProducts
         ]);
     }
     
