@@ -247,7 +247,7 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-md-8">
                 <?php $pictures = json_decode($product['pictures'], true); ?>
@@ -292,30 +292,39 @@
                     <div class="contact-card" id="contactCard">
                         <h5 style="margin-bottom:5px"><strong>Liên hệ tư vấn</strong></h5>
                         <p>Người môi giới: <strong><?= htmlspecialchars($product['agent_name']) ?></strong></p>
-                        <button class="btn btn-primary" id="showPhoneBtn">Hiển thị số điện thoại</button>
-                        <p class="phone-number" id="phoneNumber"><?= htmlspecialchars($product['phone']) ?></p>
-                        <a href="https://zalo.me/<?= htmlspecialchars($product['phone']) ?>" target="_blank"
-                            class="btn btn-outline-primary" style="margin-top: 10px">Nhắn tin qua Zalo</a>
+                        <?php if (isset($_SESSION['user'])): ?>
+                            <!-- Hiển thị nếu đã đăng nhập -->
+                            <button class="btn btn-primary" id="showPhoneBtn">Hiển thị số điện thoại</button>
+                            <p class="phone-number" id="phoneNumber"><?= htmlspecialchars($product['phone']) ?></p>
+                            <a href="https://zalo.me/<?= htmlspecialchars($product['phone']) ?>" target="_blank"
+                                class="btn btn-outline-primary" style="margin-top: 10px">Nhắn tin qua Zalo</a>
+                        <?php else: ?>
+                            <!-- Hiển thị nếu chưa đăng nhập -->
+                            <p class="text-danger">Vui lòng <a href="/index.php?controller=login&action=index">đăng nhập</a> để xem thông tin.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="contact-card-container mt-4">
                     <div class="contact-card" id="paymentCard">
                         <h5 style="margin-bottom: 20px"><strong>Bạn muốn đặt cọc trước ?</strong></h5>
-                        <form id="paymentForm">
-                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
-                            <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
-                            <input type="hidden" name="product_price"
-                                value="<?= htmlspecialchars($product['price']) ?>">
-                            <button type="button" id="payButton" class="btn btn-success w-100">Thanh toán qua ngân
-                                hàng</button>
-                        </form>
-                        <div id="paymentResult" class="mt-3" style="display: none;">
-                            <h5 style="margin-bottom: 20px"><strong>Chuyển khoản cho chủ sở hữu</strong></h5>
-                            <p class="mt-2">
-                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">nhấn vào đây
-                                    để nhận mã QR</a>
-                            </p>
-                        </div>
+                        <?php if (isset($_SESSION['user'])): ?>
+                            <!-- Hiển thị nếu đã đăng nhập -->
+                            <form id="paymentForm">
+                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
+                                <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
+                                <input type="hidden" name="product_price" value="<?= htmlspecialchars($product['price']) ?>">
+                                <button type="button" id="payButton" class="btn btn-success w-100">Thanh toán qua ngân hàng</button>
+                            </form>
+                            <div id="paymentResult" class="mt-3" style="display: none;">
+                                <h5 style="margin-bottom: 20px"><strong>Chuyển khoản cho chủ sở hữu</strong></h5>
+                                <p class="mt-2">
+                                    <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">Nhấn vào đây để nhận mã QR</a>
+                                </p>
+                            </div>
+                        <?php else: ?>
+                            <!-- Hiển thị nếu chưa đăng nhập -->
+                            <p class="text-danger">Vui lòng <a href="/index.php?controller=login&action=index">đăng nhập</a> để thực hiện thanh toán.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

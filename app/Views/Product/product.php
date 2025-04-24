@@ -96,7 +96,7 @@
     <body>
 
     <!-- Tabs -->
-    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist" style="margin-top: 100px;">
         <li class="nav-item" role="presentation">
             <a class="nav-link <?= !isset($_GET['sell_type']) || $_GET['sell_type'] === 'All' ? 'active' : '' ?>" 
             href="?<?= http_build_query(array_merge($_GET, ['sell_type' => 'All', 'page' => 1])) ?>">Tất cả</a>
@@ -134,7 +134,7 @@
                 <label class="form-label">Loại nhà đất</label>
                 <select class="form-select" id="typeFilter">
                     <option value="All" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'All' ? 'selected' : '' ?>>Tất cả</option>
-                    <option value="Villa" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Villa' ? 'selected' : '' ?>>Villa</option>
+                    <option value="Villa" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Villa' ? 'selected' : '' ?>>Biệt thự</option>
                     <option value="DetachedHouse" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'DetachedHouse' ? 'selected' : '' ?>>Nhà đất</option>
                     <option value="Apartment" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Apartment' ? 'selected' : '' ?>>Chung cư</option>
                     <option value="Others" <?= isset($_GET['type_of_real_estate']) && $_GET['type_of_real_estate'] === 'Others' ? 'selected' : '' ?>>Khác</option>
