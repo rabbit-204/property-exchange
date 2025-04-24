@@ -56,7 +56,7 @@ $extraJS = $extraJS ?? "";
             <i style="display: none" class="fa-solid fa-bars"></i>
             <?php if (isset($_SESSION['user'])): ?>
                 <a href="index.php?controller=account&action=index" class="account-link">
-                    <img src="<?= isset($_SESSION['user']['img']) ? $_SESSION['user']['img'] : 'https://picsum.photos/200/300' ?>"
+                    <img src="<?= isset($_SESSION['user']['img']) ? $_SESSION['user']['img'] : 'https://img.favpng.com/11/8/12/logo-person-user-png-favpng-5g3QgzyddY0K7j3s9XuwB9mzv.jpg' ?>"
                         class="rounded-circle img-fluid" style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;"
                         alt="Profile" title="Xem trang cá nhân">
                 </a>

@@ -66,7 +66,7 @@
                         <?php if (!empty($account['img'])): ?>
                             <img src="<?= $account['img'] ?>" alt="Avatar" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
                         <?php else: ?>
-                            <img src="https://via.placeholder.com/150" alt="Avatar" class="img-fluid rounded-circle mb-3">
+                            <img src="https://img.favpng.com/11/8/12/logo-person-user-png-favpng-5g3QgzyddY0K7j3s9XuwB9mzv.jpg" alt="Avatar" class="img-fluid rounded-circle mb-3">
                         <?php endif; ?>
                         
                         <h4><?= htmlspecialchars($account['fullname']) ?></h4>
