@@ -13,7 +13,7 @@ class LoginModel extends BaseModel {
     }
 
     // Đăng ký người dùng mới
-    public function register($fullname,$email, $phone, $password,$role)
+    public function register($fullname, $email, $phone, $password, $role)
     {
         $sql = "INSERT INTO account (fullname, email, phone, role, password) VALUES (:fullname, :email, :phone, :role, :password)";
         return $this->query($sql, [
@@ -24,42 +24,45 @@ class LoginModel extends BaseModel {
             ':password' => $password
         ]);
     }
+
     public function getUserByEmail($email)
     {
         $sql = "SELECT * FROM account WHERE email = :email";
         return $this->fetchOne($sql, [':email' => $email]);
     }
 
-    public function saveResetToken($email, $token, $expiry)
+    public function saveResetCode($email, $resetCode, $expiry)
     {
-        // Check if a token already exists for this user
+        // Check if a code already exists for this user
         $sql = "SELECT * FROM password_resets WHERE email = :email";
         $existing = $this->fetchOne($sql, [':email' => $email]);
         
         if ($existing) {
-            // Update existing token
-            $sql = "UPDATE password_resets SET token = :token, expiry = :expiry, created_at = NOW() WHERE email = :email";
+            // Update existing code
+            $sql = "UPDATE password_resets SET token = :resetCode, expiry = :expiry, created_at = NOW(), used = 0 WHERE email = :email";
         } else {
-            // Insert new token
-            $sql = "INSERT INTO password_resets (email, token, expiry, created_at) VALUES (:email, :token, :expiry, NOW())";
+            // Insert new code
+            $sql = "INSERT INTO password_resets (email, token, expiry, created_at, used) VALUES (:email, :resetCode, :expiry, NOW(), 0)";
         }
         
         return $this->query($sql, [
             ':email' => $email,
-            ':token' => $token,
+            ':resetCode' => $resetCode,
             ':expiry' => $expiry
         ]);
     }
 
-    public function verifyResetToken($token)
+    public function verifyResetCode($email, $resetCode)
     {
-        $sql = "SELECT * FROM password_resets WHERE token = :token AND expiry > NOW() AND used = 0";
-        return $this->fetchOne($sql, [':token' => $token]);
+        $sql = "SELECT * FROM password_resets WHERE email = :email AND token = :resetCode AND expiry > NOW() AND used = 0";
+        return $this->fetchOne($sql, [
+            ':email' => $email,
+            ':resetCode' => $resetCode
+        ]);
     }
 
     public function updatePassword($email, $password)
     {
-        // Note: Password is stored as plain text as per requirement
         $sql = "UPDATE account SET password = :password WHERE email = :email";
         return $this->query($sql, [
             ':email' => $email,
@@ -67,10 +70,23 @@ class LoginModel extends BaseModel {
         ]);
     }
 
+    public function invalidateResetCode($email)
+    {
+        $sql = "UPDATE password_resets SET used = 1 WHERE email = :email";
+        return $this->query($sql, [':email' => $email]);
+    }
+    
+    // For backward compatibility - can be used to verify old tokens
+    public function verifyResetToken($token)
+    {
+        $sql = "SELECT * FROM password_resets WHERE token = :token AND expiry > NOW() AND used = 0";
+        return $this->fetchOne($sql, [':token' => $token]);
+    }
+    
+    // For backward compatibility - can be used to invalidate old tokens
     public function invalidateResetToken($token)
     {
         $sql = "UPDATE password_resets SET used = 1 WHERE token = :token";
         return $this->query($sql, [':token' => $token]);
     }
 }
-?>
