@@ -43,6 +43,7 @@ $extraJS = $extraJS ?? "";
                 <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=admin">Tin tức</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=admin">Hỏi đáp</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=admin">Liên hệ</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=account&action=admin">Người dùng</a></li>
 
             </ul>
             <i style="display: none" class="fa-solid fa-bars"></i>
@@ -61,6 +62,7 @@ $extraJS = $extraJS ?? "";
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=admin">Tin tức</a></div>
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=admin">Hỏi đáp</a></div>
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=admin">Liên hệ</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=account&action=admin">Người dùng</a></div>
             </div>
         </nav>
 

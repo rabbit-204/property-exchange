@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="/Views/teamplate/style.css">
+    <!-- <link rel="stylesheet" href="/Views/teamplate/style.css"> -->
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e9e=" crossorigin="" />
@@ -247,7 +247,7 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-md-8">
                 <?php $pictures = json_decode($product['pictures'], true); ?>
@@ -292,15 +292,24 @@
                     <div class="contact-card" id="contactCard">
                         <h5 style="margin-bottom:5px"><strong>Liên hệ tư vấn</strong></h5>
                         <p>Người môi giới: <strong><?= htmlspecialchars($product['agent_name']) ?></strong></p>
+                        <?php if (isset($_SESSION['user'])): ?>
+                        <!-- Hiển thị nếu đã đăng nhập -->
                         <button class="btn btn-primary" id="showPhoneBtn">Hiển thị số điện thoại</button>
                         <p class="phone-number" id="phoneNumber"><?= htmlspecialchars($product['phone']) ?></p>
                         <a href="https://zalo.me/<?= htmlspecialchars($product['phone']) ?>" target="_blank"
                             class="btn btn-outline-primary" style="margin-top: 10px">Nhắn tin qua Zalo</a>
+                        <?php else: ?>
+                        <!-- Hiển thị nếu chưa đăng nhập -->
+                        <p class="text-danger">Vui lòng <a href="/index.php?controller=login&action=index">đăng nhập</a>
+                            để xem thông tin.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="contact-card-container mt-4">
                     <div class="contact-card" id="paymentCard">
                         <h5 style="margin-bottom: 20px"><strong>Bạn muốn đặt cọc trước ?</strong></h5>
+                        <?php if (isset($_SESSION['user'])): ?>
+                        <!-- Hiển thị nếu đã đăng nhập -->
                         <form id="paymentForm">
                             <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
                             <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
@@ -312,17 +321,42 @@
                         <div id="paymentResult" class="mt-3" style="display: none;">
                             <h5 style="margin-bottom: 20px"><strong>Chuyển khoản cho chủ sở hữu</strong></h5>
                             <p class="mt-2">
-                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">nhấn vào đây
+                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">Nhấn vào đây
                                     để nhận mã QR</a>
                             </p>
                         </div>
+                        <?php else: ?>
+                        <!-- Hiển thị nếu chưa đăng nhập -->
+                        <p class="text-danger">Vui lòng <a href="/index.php?controller=login&action=index">đăng nhập</a>
+                            để thực hiện thanh toán.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="mt-4">
-            <h3 class="fw-bold"><?= htmlspecialchars($product['name']) ?></h3>
+            <!-- Add this button right after the product name in your product detail page -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold"><?= htmlspecialchars($product['name']) ?></h3>
+                <?php if (isset($_SESSION['user'])): ?>
+                <?php 
+        // Check if product is already in favorites
+        require_once __DIR__ . '/../../Models/FavoriteModel.php'; // Updated path
+        $favoriteModel = new FavoriteModel();
+        $isFavorite = $favoriteModel->isFavorite($_SESSION['user']['id'], $product['id']);
+        ?>
+                <button id="favoriteBtn" class="btn <?= $isFavorite ? 'btn-danger' : 'btn-outline-danger' ?>"
+                    data-product-id="<?= htmlspecialchars($product['id']) ?>">
+                    <i class="fa fa-heart"></i>
+                    <span><?= $isFavorite ? 'Đã yêu thích' : 'Yêu thích' ?></span>
+                </button>
+                <?php else: ?>
+                <a href="/index.php?controller=login&action=index" class="btn btn-outline-danger">
+                    <i class="fa fa-heart"></i> Yêu thích
+                </a>
+                <?php endif; ?>
+            </div>
             <p class="text-muted" style="font-size: 22px;">
                 Vị trí: <?= htmlspecialchars($product['location']) ?>
             </p>
@@ -411,7 +445,7 @@
         </div>
     </div>
 
-    <div style="margin-left: 50px; margin-right: 50px;"> 
+    <div style="margin-left: 50px; margin-right: 50px;">
         <h5 style="margin-bottom: 10px; color: #1565C0; font-weight: bold;">Vị trí trên bản đồ</h5>
         <div id="map" style="width: 100%; height: 400px; border: 1px solid #ddd;"></div>
     </div>
@@ -492,7 +526,7 @@
 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e=" crossorigin=""></script>
+        integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e=" crossorigin=""></script>
 
     <script>
     const map = L.map('map').setView([<?= htmlspecialchars($product['latitude']) ?>,
@@ -510,9 +544,75 @@
         .openPopup();
     </script>
 
+    <script>
+    $(document).ready(function() {
+        // Handle favorite button click
+        $('#favoriteBtn').on('click', function() {
+            const button = $(this);
+            const productId = button.data('product-id');
+
+            // Send AJAX request to toggle favorite status
+            $.ajax({
+                url: 'index.php?controller=favorite&action=toggleFavorite',
+                type: 'POST',
+                data: {
+                    product_id: productId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Update button appearance based on new favorite status
+                        if (response.isFavorite) {
+                            button.removeClass('btn-outline-danger').addClass('btn-danger');
+                            button.find('span').text('Đã yêu thích');
+                        } else {
+                            button.removeClass('btn-danger').addClass('btn-outline-danger');
+                            button.find('span').text('Yêu thích');
+                        }
+
+                        // Show a toast or notification (optional)
+                        showToast(response.message);
+                    } else {
+                        // Show error message
+                        showToast(response.message, 'error');
+                    }
+                },
+                error: function() {
+                    showToast('Có lỗi xảy ra, vui lòng thử lại sau', 'error');
+                }
+            });
+        });
+
+        // Simple toast function (you can replace with your preferred notification system)
+        function showToast(message, type = 'success') {
+            const toastClass = type === 'success' ? 'bg-success' : 'bg-danger';
+
+            const toast = `
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+                <div class="toast ${toastClass} text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            </div>
+        `;
+
+            $('body').append(toast);
+            $('.toast').toast({
+                delay: 3000
+            }).toast('show');
+
+            // Remove toast after it's hidden
+            $('.toast').on('hidden.bs.toast', function() {
+                $(this).parent().remove();
+            });
+        }
+    });
+    </script>
+
 
     <!-- Leaflet JS -->
-   
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

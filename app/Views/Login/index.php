@@ -33,6 +33,7 @@
                             <input class="form-check-input" type="checkbox" name="remember" id="remember">
                             <label class="form-check-label" for="remember">Remember me</label>
                         </div>
+                        <a href="/index.php?controller=login&action=forgotPassword" class="text-decoration-none">Forgot password?</a>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
                 </form>

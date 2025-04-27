@@ -13,10 +13,10 @@ class PaymentController
         $productName = $_POST['product_name'];
         $productPrice = $_POST['product_price'];
         $Amount = 0;
-        if ($productPrice > 1000000) {
+        if ($productPrice > 1000000000) {
             $Amount = round($productPrice / 1000000, 2);
-        } else if ($productPrice < 1000000 && $productPrice > 10000) {
-            $Amount = round($productPrice / 10000, 2);
+        } else if ($productPrice < 1000000000 && $productPrice > 1000000) {
+            $Amount = round($productPrice / 1000, 2);
         } else{
             $Amount = round($productPrice / 1000, 2);
         }
