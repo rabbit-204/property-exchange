@@ -50,7 +50,7 @@
 
     <div class="swiper-container-wrapper">
         <h2 style="text-align:center; margin-bottom:20px; ">Bất Động Sản Tại Các Thành Phố Nổi Bật</h2>
-        <div class="swiper mySwiper">
+        <div class="swiper mySwiper1">
             <div class="swiper-wrapper">
                 <?php foreach ($listProvince as $province): ?>
                     <div class="swiper-slide">
@@ -65,8 +65,8 @@
             </div>
 
             <!-- Nút điều hướng -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next navi_cus"></div>
+            <div class="swiper-button-prev navi_cus"></div>
         </div>
     </div>
 

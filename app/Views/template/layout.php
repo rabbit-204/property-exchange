@@ -55,7 +55,7 @@ $extraJS = $extraJS ?? "";
             <?php if (isset($_SESSION['user'])): ?>
                 <button class="btn btn-outline-dark" id="btnLogout">Logout</button>
             <?php else: ?>
-                <button class="btn btn-outline-dark" id="btnLogin">Login</button>
+                <button class="btn btn-outline-light" id="btnLogin">Login</button>
             <?php endif; ?>
             <!-- <button class="btn btn-outline-dark" id="btnLogin">Login</button> -->
 

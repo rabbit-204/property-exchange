@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // console.log($listIntro);
-var swiper = new Swiper(".mySwiper", {
+var mySwiper1 = new Swiper(".mySwiper1", {
     slidesPerView: 1,
     spaceBetween: 20,
     slidesPerGroup: 1,

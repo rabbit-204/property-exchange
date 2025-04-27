@@ -95,6 +95,9 @@ body {
 #showRegister1 {
     display: none;
 }
+#returnHP1 {
+    display: none;
+}
 @media (max-width: 767px) {
 
     .image-section {
@@ -104,6 +107,9 @@ body {
         display: block;
     }
     #showRegister1 {
+        display: block;
+    }
+    #returnHP1 {
         display: block;
     }
     

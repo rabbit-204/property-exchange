@@ -24,5 +24,18 @@ class LoginModel extends BaseModel {
             ':password' => $password
         ]);
     }
+    public function getPasswordByEmail($email) {
+        $sql= "SELECT password FROM account WHERE email = :email";
+       return $this->fetchOne($sql,[
+        ':email' => $email
+       ]);
+    }
+    public function updatePassword($email, $newPasswordHash) {
+        $sql ="UPDATE account SET password = :newPasswordHash WHERE email = :email";
+        return $this->query($sql,[
+            ':email' => $email,
+            ':newPasswordHash' => $newPasswordHash,
+        ]);
+    }
 }
 ?>

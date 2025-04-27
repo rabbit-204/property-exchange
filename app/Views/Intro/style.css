@@ -112,6 +112,11 @@
     cursor: pointer;
 } */
 
+.swiper-button-next.navi_cus,
+.swiper-button-prev.navi_cus{
+    color: white;
+}
+
 
 
 
