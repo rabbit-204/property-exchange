@@ -17,7 +17,7 @@
         <!-- Login Form -->
         <div class="form-container <?= isset($showRegister) && $showRegister ? '' : 'active' ?>" id="loginForm">
             <div class="form-section">
-                <h1>Login hire.</h1>
+                <h1>Đăng nhập.</h1>
                 <?php if (isset($error) && !isset($showRegister)) : ?>
                     <p style="color: red;"><?= $error ?></p>
                 <?php endif; ?>
@@ -35,24 +35,27 @@
                         </div>
                         <a href="/index.php?controller=login&action=forgotPassword" class="text-decoration-none">Forgot password?</a>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
                 </form>
-                <a href="index.php?controller=homepage&action=index" style="align-self:flex-end; margin-top:20px; color: black; font-size: 16px; text-decoration: none;">Quay về trang chủ</a>
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="index.php?controller=homepage&action=index" style="align-self:flex-end;  color: black; font-size: 16px; text-decoration: none;">Quay về trang chủ</a>
+                    <div id="showRegister1"> Đăng ký</div>
+                </div>
             </div>
             <div class="image-section">
-                <p>Don't have an account?</p>
-                <button id="showRegister">Register</button>
+                <p>Bạn chưa có tài khoản?</p>
+                <button id="showRegister">Đăng ký</button>
             </div>
         </div>
 
         <!-- Register Form -->
         <div class="form-container <?= isset($showRegister) && $showRegister ? 'active' : '' ?>" id="registerForm">
             <div class="image-section">
-                <p>Already have an account?</p>
-                <button id="showLogin">Login</button>
+                <p>Bạn đã có tài khoản?</p>
+                <button id="showLogin">Đăng nhập</button>
             </div>
             <div class="form-section">
-                <h1>Register hire.</h1>
+                <h1>Đăng ký</h1>
                 <?php if (isset($error) && isset($showRegister)) : ?>
                     <p style="color: red;"><?= $error ?></p>
                 <?php endif; ?>
@@ -72,8 +75,9 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" name="confirmPW" placeholder="Confirm Password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                    <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
                 </form>
+                <div style="align-self:flex-start; margin-top: 20px; cursor: pointer;" id="showLogin1">Đăng nhập</div>
             </div>
         </div>
     </div>
@@ -84,7 +88,9 @@
         const loginForm = document.getElementById('loginForm');
         const registerForm = document.getElementById('registerForm');
         const showRegister = document.getElementById('showRegister');
+        const showRegister1 = document.getElementById('showRegister1');
         const showLogin = document.getElementById('showLogin');
+        const showLogin1 = document.getElementById('showLogin1');
 
         showRegister.addEventListener('click', () => {
             loginForm.classList.remove('active');
@@ -92,6 +98,15 @@
         });
 
         showLogin.addEventListener('click', () => {
+            registerForm.classList.remove('active');
+            loginForm.classList.add('active');
+        });
+        showRegister1.addEventListener('click', () => {
+            loginForm.classList.remove('active');
+            registerForm.classList.add('active');
+        });
+
+        showLogin1.addEventListener('click', () => {
             registerForm.classList.remove('active');
             loginForm.classList.add('active');
         });

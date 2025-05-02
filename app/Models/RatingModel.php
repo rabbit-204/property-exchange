@@ -13,5 +13,22 @@ class RatingModel extends BaseModel {
             ':name_user' => $name_user
         ]);
     }
+    function getListReview(){
+        $sql= "SELECT * 
+                FROM rating r join account a on r.id_user = a.id
+                WHERE r.rating IN (4, 5)
+                LIMIT 20;
+                ";
+        return $this->fetchAll($sql,[]);
+
+    }
+    function getAverage(){
+        $sql= "SELECT ROUND(AVG(rating), 1) AS average_rating FROM rating;";
+        return $this->fetchOne($sql,[]);
+    }
+    function getCountRating(){
+        $sql= "SELECT count(rating) AS count_rating FROM rating;";
+        return $this->fetchOne($sql,[]);
+    }
 }
 ?>
