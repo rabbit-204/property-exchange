@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: 'POST',
                 success: function (response) {
                     console.log(response);
-                    // alert('Đăng xuất thành công!');
                     window.location.href = "/index.php?controller=login&action=index"; // Chuyển hướng về trang đăng nhập
                 },
                 error: function () {

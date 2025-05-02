@@ -44,9 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnLogout = document.getElementById("btnLogout");
     if (btnLogout) {
         btnLogout.addEventListener("click", function () {
-            // console.log(document.cookie);
-            // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            // console.log(document.cookie);
             $.ajax({
                 url: '/index.php?controller=login&action=logout', // Thay đổi URL phù hợp với controller của bạn
                 method: 'POST',

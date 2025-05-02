@@ -1,4 +1,4 @@
-*{
+/* *{
     box-sizing: border-box;
 }
 .chat-container {
@@ -16,7 +16,6 @@
 
 }
 .chat-box {
-    /* height: 80%; */
     flex: 1;
     overflow-y: auto;
     border: 1px solid #ddd;
@@ -70,4 +69,7 @@
 }
 .chat-form button:hover {
     background: #0056b3;
+} */
+#chatBox {
+    flex: 1;
 }

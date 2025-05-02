@@ -10,9 +10,14 @@ class LoginController extends BaseController
 
     public function index()
     {
-        if (isset($_SESSION['user']) || isset($_COOKIE['token'])) {
-            $_SESSION['user'] = json_decode($_COOKIE['token'], true) ?? $_SESSION['user'];
+        if (isset($_SESSION['user']) || isset($_COOKIE['tokenUser'])) {
+            $_SESSION['user'] = json_decode($_COOKIE['tokenUser'], true) ?? $_SESSION['user'];
             header('Location: /index.php?controller=homepage&action=index');
+            exit();
+        }
+        if (isset($_SESSION['admin']) || isset($_COOKIE['tokenAdmin'])) {
+            $_SESSION['admin'] = json_decode($_COOKIE['tokenAdmin'], true) ?? $_SESSION['admin'];
+            header('Location: /index.php?controller=homepage&action=admin');
             exit();
         }
         return $this->view('login.index');  // Tên folder bên view + .index
@@ -115,11 +120,18 @@ class LoginController extends BaseController
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
                 }
-
-                $_SESSION['user'] = $user;
+                if ($user["role"] === "admin"){   
+                    $_SESSION['admin'] = $user;
+                }else{
+                    $_SESSION['user'] = $user;
+                }
 
                 if ($remember) {
-                    setcookie('token', json_encode($user), time() + (86400 * 1), "/"); // 1 ngày
+                    if ($user["role"] === "admin"){  
+                        setcookie('tokenAdmin', json_encode($user), time() + (86400 * 1), "/"); // 1 ngày
+                    }else{
+                        setcookie('tokenUser', json_encode($user), time() + (86400 * 1), "/"); // 1 ngày
+                    }
                 }
 
                 if ($user['role'] === 'admin') {
@@ -144,8 +156,13 @@ class LoginController extends BaseController
         session_start();
         session_unset();
         session_destroy();
-        unset($_SESSION['user']);
-        setcookie('token', '', time() - 3600, "/"); // Xóa cookie
+        if ($_SESSION['admin']){   
+            unset($_SESSION['admin']);
+            setcookie('tokenAdmin', '', time() - 3600, "/");
+        }else{
+            unset($_SESSION['user']);
+            setcookie('tokenUser', '', time() - 3600, "/");
+        }
         header('Location: /index.php?controller=login&action=index');
         exit;
     }

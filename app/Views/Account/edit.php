@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="index.php?controller=account&action=profile" class="btn btn-secondary">Quay
+                                <a href="index.php?controller=account&action=index" class="btn btn-secondary">Quay
                                     lại</a>
                                 <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                             </div>
