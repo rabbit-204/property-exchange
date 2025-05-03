@@ -19,6 +19,11 @@ $extraJS = $extraJS ?? "";
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+    <!-- SwiperJS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="/Views/template/style.css">
@@ -27,12 +32,13 @@ $extraJS = $extraJS ?? "";
     <?php if (!empty($extraCSS)): ?>
         <link rel="stylesheet" href="<?= $extraCSS ?>">
     <?php endif; ?>
+
 </head>
 
 <body>
 
     <!-- Nội dung trang -->
-    <main>
+    <main style="max-width: 100vw; overflow-x: hidden;">
 
         <nav class="_header mw-100">
             <div onclick="handleOpenSidebar()" class="_bar"><i class="fa-solid fa-bars"></i></div>
@@ -62,7 +68,7 @@ $extraJS = $extraJS ?? "";
                         title="Xem trang cá nhân">
                 </a>
             <?php else: ?>
-                <button class="btn btn-outline-dark" id="btnLogin">Login</button>
+                <button class="btn btn-outline-light" id="btnLogin">Login</button>
             <?php endif; ?>
 
             <div class="_sidebar" id="sidebar">
@@ -92,20 +98,42 @@ $extraJS = $extraJS ?? "";
                         <h2 class="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
                         <div class="stats d-flex justify-content-center gap-5 flex-wrap">
                             <div>
-                                <h3>10m+</h3>
-                                <p>Happy People</p>
+                                <h3><?= htmlspecialchars($countRating['count_rating']) ?></h3>
+                                <p>Đã đánh giá</p>
                             </div>
                             <div>
-                                <h3>4.88</h3>
-                                <p>Overall rating</p>
-                                <div class="stars">★★★★★</div>
+                                <h3><?= htmlspecialchars($averageRating['average_rating']) ?></h3>
+                                <!-- <p>Overall rating</p> -->
+                                <!-- <div class="stars">★★★★★</div> -->
+                                <div class="stars">
+                                    <?php
+                                    // $rating = 3.6;
+                                    $rating = $averageRating['average_rating'];
+                                    $fullStars = floor($rating); // Số sao đầy
+                                    $halfStar = ($rating - $fullStars) >= 0.5 ? 1 : 0; // Có sao nửa không
+                                    $emptyStars = 5 - $fullStars - $halfStar; // Số sao rỗng còn lại
+
+                                    // In sao đầy
+                                    for ($i = 0; $i < $fullStars; $i++) {
+                                        echo '★'; // sao đầy
+                                    }
+                                    // In sao nửa (nếu có)
+                                    if ($halfStar) {
+                                        echo '⯪'; // bạn có thể thay bằng biểu tượng nửa sao nếu muốn đẹp hơn
+                                    }
+                                    // In sao trống
+                                    for ($i = 0; $i < $emptyStars; $i++) {
+                                        echo '☆'; // sao trống
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
                     <!-- Đánh giá của khách hàng -->
-                    <div class="testimonial">
+                    <!--<div class="testimonial">
                         <div class="d-flex gap-3">
                             <img src="https://picsum.photos/200/300" class="rounded-circle img-fluid"
                                 style="width: 50px; height: 50px; object-fit: cover;" alt="img">
@@ -120,12 +148,57 @@ $extraJS = $extraJS ?? "";
                             tìm được ngôi nhà ưng ý chỉ trong vài phút.
                         </p>
 
-                        <!-- Nút điều hướng -->
                         <div class="navigation">
                             <button class="btn-nav">&lt;</button>
                             <button class="btn-nav">&gt;</button>
                         </div>
+                    </div> -->
+                    <!-- <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($listReview as $review): ?>
+                                <div class="swiper-slide">
+                                    <div class="d-flex gap-3">
+                                        <img src="<?= $review['img'] ?? 'https://picsum.photos/200/300' ?>" class="rounded-circle img-fluid" style="width: 50px; height: 50px; object-fit: cover;" alt="img">
+                                        <div class="text-start">
+                                            <h4><?= htmlspecialchars($review['fullname']) ?></h4>
+                                            <p class="sub-text">Người dùng lâu năm</p>
+                                        </div>
+                                    </div>
+                                    <p class="review-text"><?= htmlspecialchars($review['message']) ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div> -->
+                    <div class="review-carousel position-relative" style="max-width: 600px; margin: 0 auto; width:100%;">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <?php foreach ($listReview as $review): ?>
+                                    <div class="swiper-slide">
+                                        <div class="d-flex gap-3">
+                                            <img src="<?= $review['img'] ?? 'https://picsum.photos/200/300' ?>"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 50px; height: 50px; object-fit: cover;"
+                                                alt="img">
+                                            <div class="text-start">
+                                                <h4><?= htmlspecialchars($review['fullname']) ?></h4>
+                                                <p class="sub-text">Người dùng lâu năm</p>
+                                            </div>
+                                        </div>
+                                        <p class="review-text"><?= htmlspecialchars($review['message']) ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <!-- Navigation buttons -->
+                            <div class="swiper-button-next custom-nav"></div>
+                            <div class="swiper-button-prev custom-nav"></div>
+                        </div>
                     </div>
+
+
                 </div>
 
 
@@ -141,6 +214,8 @@ $extraJS = $extraJS ?? "";
                         <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify">
                     </div> -->
             </section>
+
+
             <section>
                 <form id="ratingForm" class="container my-5 d-flex flex-column align-items-center text-center mw-100"
                     style="width:400px;">
@@ -308,8 +383,14 @@ $extraJS = $extraJS ?? "";
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- SwiperJS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
     <!-- JS chính -->
     <script src="/Views/template/script.js"></script>
+
 
     <!-- JS riêng -->
     <?php if (!empty($extraJS)): ?>

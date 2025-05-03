@@ -5,8 +5,21 @@ class BaseController
 {
     const VIEW_FOLDER_NAME = 'Views';
     const MODEL_FOLDER_NAME = 'Models';
+    protected $globalData = [];
+
+    public function __construct()
+    {
+        // Các dữ liệu dùng chung mọi view, ví dụ Footer
+        $footerModel = $this->model('rating');
+        $this->globalData = [
+            'listReview' => $footerModel->getListReview(),
+            'averageRating' => $footerModel->getAverage(),
+            'countRating' => $footerModel->getCountRating(),
+        ];
+    }
     protected function view($view_path, array $data = [])
     {
+        $data = array_merge($this->globalData, $data);
         foreach ($data as $key => $value) {
             $$key = $value; 
         }

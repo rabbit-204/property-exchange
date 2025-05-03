@@ -24,7 +24,28 @@ class LoginModel extends BaseModel {
             ':password' => $password
         ]);
     }
+    public function getPasswordByEmail($email) {
+        $sql= "SELECT password FROM account WHERE email = :email";
+       return $this->fetchOne($sql,[
+        ':email' => $email
+       ]);
+    }
+    public function updatePassword($email, $newPasswordHash) {
+        $sql ="UPDATE account SET password = :newPasswordHash WHERE email = :email";
+        return $this->query($sql,[
+            ':email' => $email,
+            ':newPasswordHash' => $newPasswordHash,
+        ]);
+    }
 
+    // public function updatePassword($email, $password)
+    // {
+    //     $sql = "UPDATE account SET password = :password WHERE email = :email";
+    //     return $this->query($sql, [
+    //         ':email' => $email,
+    //         ':password' => $password
+    //     ]);
+    // }
     public function getUserByEmail($email)
     {
         $sql = "SELECT * FROM account WHERE email = :email";
@@ -61,14 +82,6 @@ class LoginModel extends BaseModel {
         ]);
     }
 
-    public function updatePassword($email, $password)
-    {
-        $sql = "UPDATE account SET password = :password WHERE email = :email";
-        return $this->query($sql, [
-            ':email' => $email,
-            ':password' => $password
-        ]);
-    }
 
     public function invalidateResetCode($email)
     {
@@ -90,3 +103,4 @@ class LoginModel extends BaseModel {
         return $this->query($sql, [':token' => $token]);
     }
 }
+?>

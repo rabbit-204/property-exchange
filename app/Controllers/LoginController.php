@@ -10,12 +10,57 @@ class LoginController extends BaseController
 
     public function index()
     {
-        if (isset($_SESSION['user']) || isset($_COOKIE['token'])) {
-            $_SESSION['user'] = json_decode($_COOKIE['token'], true) ?? $_SESSION['user'];
+        if (isset($_SESSION['user']) || isset($_COOKIE['tokenUser'])) {
+            $_SESSION['user'] = json_decode($_COOKIE['tokenUser'], true) ?? $_SESSION['user'];
             header('Location: /index.php?controller=homepage&action=index');
             exit();
         }
+        if (isset($_SESSION['admin']) || isset($_COOKIE['tokenAdmin'])) {
+            $_SESSION['admin'] = json_decode($_COOKIE['tokenAdmin'], true) ?? $_SESSION['admin'];
+            header('Location: /index.php?controller=homepage&action=admin');
+            exit();
+        }
         return $this->view('login.index');  // Tên folder bên view + .index
+    }
+    public function changePWform()
+    {
+        return $this->view('login.changePW');  // Tên folder bên view + .index
+    }
+
+    public function changePW(){
+        if (isset($_POST['pwcurrent']) && isset($_POST['newpw']) &&isset($_POST['confirmpw'])){
+            $pwcurrent = $_POST['pwcurrent'];
+            $newpw = $_POST['newpw'];
+            $confirmpw = $_POST['confirmpw'];
+            if ($newpw !== $confirmpw){
+                return $this->view('Login.changePW', [
+                    'error' => 'Mật khẩu không khớp',
+                ]);
+            }
+            $email = $_SESSION['email'];
+            $user = $this->authmodel->getPasswordByEmail($email);
+            if ( $pwcurrent !== $user['password']) {
+                return $this->view('Login.changePW', [
+                    'error' => 'Mật khẩu hiện tại không đúng',
+                ]);
+            }
+            // $newHash = password_hash($newpw, PASSWORD_DEFAULT);
+            $success = $this->authmodel->updatePassword($email, $newpw);
+            // $success = $this->authmodel->changepw();
+            if ($success) {
+                // Đăng ký thành công, chuyển hướng đến trang login
+                header('Location: /index.php?controller=login&action=index');
+                exit;
+            } else {
+                return $this->view('Login.changePW', [
+                    'error' => 'Thay đổi mật khẩu thất bại'
+                ]);
+            }
+
+        }else {
+            // Nếu không có dữ liệu POST, hiển thị form Register
+            return $this->view('Login.changePW', ['error' => 'Vui lòng nhập đủ các trường']);
+        }
     }
 
     public function register()
@@ -32,11 +77,12 @@ class LoginController extends BaseController
             if ($password !== $confirmPW) {
                 // Trả về giao diện Register với thông báo lỗi
                 return $this->view('login.index', [
-                    'error' => 'Passwords do not match',
+                    'error' => 'Mật khẩu không khớp',
                     'showRegister' => true // Biến để hiển thị form Register
                 ]);
             }
-            
+            // echo "<script>console.log('Password: " . addslashes($password) . "');</script>";
+            // print_r($password);
             // Xử lý đăng ký (thêm vào cơ sở dữ liệu)
             $success = $this->authmodel->register($fullname, $email, $phone, $password, $role);
 
@@ -47,13 +93,13 @@ class LoginController extends BaseController
             } else {
                 // Đăng ký thất bại
                 return $this->view('Login.index', [
-                    'error' => 'Registration failed',
+                    'error' => 'Đăng ký thất bại',
                     'showRegister' => true
                 ]);
             }
         } else {
             // Nếu không có dữ liệu POST, hiển thị form Register
-            return $this->view('Login.index', ['showRegister' => true]);
+            return $this->view('Login.index', ['showRegister' => true,'error' => 'Vui lòng nhập đủ các trường']);
         }
     }
 
@@ -74,11 +120,18 @@ class LoginController extends BaseController
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
                 }
-
-                $_SESSION['user'] = $user;
+                if ($user["role"] === "admin"){   
+                    $_SESSION['admin'] = $user;
+                }else{
+                    $_SESSION['user'] = $user;
+                }
 
                 if ($remember) {
-                    setcookie('token', json_encode($user), time() + (86400 * 1), "/"); // 1 ngày
+                    if ($user["role"] === "admin"){  
+                        setcookie('tokenAdmin', json_encode($user), time() + (86400 * 1), "/"); // 1 ngày
+                    }else{
+                        setcookie('tokenUser', json_encode($user), time() + (86400 * 1), "/"); // 1 ngày
+                    }
                 }
 
                 if ($user['role'] === 'admin') {
@@ -89,10 +142,12 @@ class LoginController extends BaseController
                     exit;
                 }
             } else {
-                return $this->view('Login.index', ['error' => 'Invalid email or password']);
+                // Đăng nhập thất bại
+                return $this->view('Login.index', ['error' => 'Email hoặc mật khẩu không đúng']);
             }
         } else {
-            return $this->view('Login.index', ['error' => 'Please enter username and password']);
+            // Nếu không có dữ liệu POST, có thể chuyển hướng hoặc báo lỗi
+            return $this->view('Login.index', ['error' => 'Vui lòng nhập email và mật khẩu']);
         }
     }
 
@@ -101,8 +156,13 @@ class LoginController extends BaseController
         session_start();
         session_unset();
         session_destroy();
-        unset($_SESSION['user']);
-        setcookie('token', '', time() - 3600, "/"); // Xóa cookie
+        if ($_SESSION['admin']){   
+            unset($_SESSION['admin']);
+            setcookie('tokenAdmin', '', time() - 3600, "/");
+        }else{
+            unset($_SESSION['user']);
+            setcookie('tokenUser', '', time() - 3600, "/");
+        }
         header('Location: /index.php?controller=login&action=index');
         exit;
     }

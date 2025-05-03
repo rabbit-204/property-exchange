@@ -4,8 +4,8 @@ require_once __DIR__ . '/../Models/ProductModel.php';
 class ProductController extends BaseController
 {
     private $productModel;
-    public function __construct()
-    {
+    public function __construct() {
+        parent::__construct();
         $this->productModel = new ProductModel();
     }
     public function create()

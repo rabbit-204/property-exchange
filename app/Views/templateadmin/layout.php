@@ -10,14 +10,17 @@ $extraJS = $extraJS ?? "";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($title) ?></title>
+    <title><?= htmlspecialchars($title) ?></title>    
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Icon chính -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
@@ -56,10 +59,10 @@ $extraJS = $extraJS ?? "";
 
             </ul>
             <i style="display: none" class="fa-solid fa-bars"></i>
-            <?php if (isset($_SESSION['user'])): ?>
-                <button class="btn btn-outline-dark" id="btnLogout">Logout</button>
+            <?php if (isset($_SESSION['admin'])): ?>
+                <button class="btn btn-outline-light" id="btnLogout">Logout</button>
             <?php else: ?>
-                <button class="btn btn-outline-dark" id="btnLogin">Login</button>
+                <button class="btn btn-outline-light" id="btnLogin">Login</button>
             <?php endif; ?>
             <!-- <button class="btn btn-outline-dark" id="btnLogin">Login</button> -->
 
@@ -91,7 +94,7 @@ $extraJS = $extraJS ?? "";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JS chính -->
-    <script src="/Views/template/script.js"></script>
+    <script src="/Views/templateAdmin/script.js"></script>
 
     <!-- JS riêng -->
     <?php if (!empty($extraJS)): ?>
