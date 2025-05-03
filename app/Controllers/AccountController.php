@@ -5,6 +5,7 @@ class AccountController extends BaseController {
     private $accountModel;
     
     public function __construct() {
+        parent::__construct();
         $this->accountModel = new AccountModel();
     }
     
