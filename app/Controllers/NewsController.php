@@ -6,6 +6,7 @@ class NewsController extends BaseController
     private $newsModel;
     public function __construct()
     {
+        parent::__construct();
         $this->newsModel = new NewsModel();
     }
     public function create()

@@ -10,6 +10,7 @@ class NewsDetailsController extends BaseController
 
     public function __construct()
     {
+        parent::__construct();
         $this->newsModel = new NewsModel();
         $this->commentModel = new CommentModel();
     }
