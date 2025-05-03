@@ -4,22 +4,6 @@ $extraCSS = $extraCSS ?? "/Views/news/style.css";
 $extraJS = $extraJS ?? "/Views/news/script.js";
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-
-<body>
-</body>
-
-</html>
-
 <div class="container" style="margin-top: 2rem;">
     <div class="tim-kiem">
         <h5>Tìm kiếm từ khóa:</h5>
@@ -29,25 +13,22 @@ $extraJS = $extraJS ?? "/Views/news/script.js";
 
             <div class="col-auto">
                 <input type="text" class="form-control" placeholder="Nhập tiêu đề hoặc nội dung tin tức..."
-                    aria-label="Search" name="search" value="<?= htmlspecialchars($search ?? '') ?>">
+                    name="search" value="<?= htmlspecialchars($search ?? '') ?>">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">Tìm kiếm</button>
             </div>
         </form>
     </div>
+
     <div class="section-header">
-        <?php
-        if (!isset($_GET["search"]))
-            echo
-                '<h3>Tin tức</h3>
-        </h3>';
-        else {
-            echo
-                '<h3>Kết quả tìm kiếm: ' . $search . '</h3>';
-        }
-        ?>
+        <?php if (!isset($_GET["search"])): ?>
+            <h3>Tin tức</h3>
+        <?php else: ?>
+            <h3>Kết quả tìm kiếm: <?= htmlspecialchars($search) ?></h3>
+        <?php endif; ?>
     </div>
+
     <form class="row g-3 align-items-center" method="GET" action="index.php">
         <input type="hidden" name="controller" value="news">
         <input type="hidden" name="action" value="index">
@@ -63,33 +44,33 @@ $extraJS = $extraJS ?? "/Views/news/script.js";
             </select>
         </div>
     </form>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
         <?php foreach ($newsList as $news): ?>
             <div class="col">
                 <div class="card h-100">
-                    <a href="index.php?controller=newsdetails&action=index&id=<?php echo $news['id']; ?>">
-                        <img src="<?php echo $news['image']; ?>" class="card-img-top" alt="Ảnh tin tức" height="200">
+                    <a href="index.php?controller=newsdetails&action=index&id=<?= $news['id'] ?>">
+                        <img src="<?= $news['image'] ?>" class="card-img-top" alt="Ảnh tin tức" height="200">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="index.php?controller=newsdetails&action=index&id=<?php echo $news['id']; ?>">
-                                <?php echo htmlspecialchars($news['title']); ?>
+                            <a href="index.php?controller=newsdetails&action=index&id=<?= $news['id'] ?>">
+                                <?= htmlspecialchars($news['title']) ?>
                             </a>
                         </h5>
                         <p class="card-text">
-                            <?php echo nl2br(htmlspecialchars(mb_substr($news['description'], 0, 100))) . '...'; ?>
+                            <?= nl2br(htmlspecialchars(mb_substr($news['description'], 0, 100))) . '...' ?>
                         </p>
                         <p class="text-muted"><small>Ngày đăng:
-                                <?php echo date('d/m/Y', strtotime($news['created_at'])); ?></small></p>
+                                <?= date('d/m/Y', strtotime($news['created_at'])) ?></small></p>
                     </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
-    <!-- Phân trang -->
+
     <nav aria-label="Page navigation" class="mt-4">
         <ul class="pagination justify-content-center">
-
             <?php if ($currentPage > 1): ?>
                 <li class="page-item">
                     <a class="page-link"
@@ -116,9 +97,6 @@ $extraJS = $extraJS ?? "/Views/news/script.js";
                     </a>
                 </li>
             <?php endif; ?>
-
         </ul>
     </nav>
-</div>
-</div>
 </div>
