@@ -22,7 +22,6 @@ $extraJS = $extraJS ?? "";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
 
-
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="/Views/template/style.css">
@@ -43,13 +42,20 @@ $extraJS = $extraJS ?? "";
             <!-- <i class='' class="fa-solid fa-bars"></i> -->
             <div class="_logo">BKHome</div>
             <ul class="_navi">
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=admin">Trang chủ</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=intro&action=admin">Giới thiệu</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=product&action=admin">Sản phẩm</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=admin">Tin tức</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=admin">Hỏi đáp</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=admin">Liên hệ</a></li>
-                <li class="_navi_ele"><a class="nav-link" aria-current="page" href="index.php?controller=account&action=admin">Người dùng</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=homepage&action=admin">Trang chủ</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=intro&action=admin">Giới thiệu</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=product&action=admin">Sản phẩm</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=news&action=admin">Tin tức</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=answerandquestion&action=admin">Hỏi đáp</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=contact&action=admin">Liên hệ</a></li>
+                <li class="_navi_ele"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=account&action=admin">Người dùng</a></li>
 
             </ul>
             <i style="display: none" class="fa-solid fa-bars"></i>
@@ -62,13 +68,20 @@ $extraJS = $extraJS ?? "";
 
             <div class="_sidebar" id="sidebar">
                 <i onclick="handleCloseSidebar()" class="fa-solid fa-x"></i>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=admin">Trang chủ</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=intro&action=admin">Giới thiệu</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=product&action=admin">Sản phẩm</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=post&action=admin">Tin tức</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=answerandquestion&action=admin">Hỏi đáp</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=contact&action=admin">Liên hệ</a></div>
-                <div class="_sidebar-item"><a class="nav-link" aria-current="page" href="index.php?controller=account&action=admin">Người dùng</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=homepage&action=admin">Trang chủ</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=intro&action=admin">Giới thiệu</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=product&action=admin">Sản phẩm</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=news&action=admin">Tin tức</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=answerandquestion&action=admin">Hỏi đáp</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=contact&action=admin">Liên hệ</a></div>
+                <div class="_sidebar-item"><a class="nav-link" aria-current="page"
+                        href="index.php?controller=account&action=admin">Người dùng</a></div>
             </div>
         </nav>
 

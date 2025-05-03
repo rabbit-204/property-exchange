@@ -30,7 +30,7 @@ $extraJS = $extraJS ?? "";
 
     <!-- CSS riêng -->
     <?php if (!empty($extraCSS)): ?>
-    <link rel="stylesheet" href="<?= $extraCSS ?>">
+        <link rel="stylesheet" href="<?= $extraCSS ?>">
     <?php endif; ?>
 
 </head>
@@ -52,7 +52,7 @@ $extraJS = $extraJS ?? "";
                 <li class="_navi_ele"><a class="nav-link" aria-current="page"
                         href="index.php?controller=product&action=index">Sản phẩm</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page"
-                        href="index.php?controller=post&action=index">Tin tức</a></li>
+                        href="index.php?controller=news&action=index">Tin tức</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page"
                         href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></li>
                 <li class="_navi_ele"><a class="nav-link" aria-current="page"
@@ -63,8 +63,9 @@ $extraJS = $extraJS ?? "";
             <?php if (isset($_SESSION['user'])): ?>
                 <a href="index.php?controller=account&action=index" class="account-link">
                     <img src="<?= isset($_SESSION['user']['img']) ? $_SESSION['user']['img'] : 'https://img.favpng.com/11/8/12/logo-person-user-png-favpng-5g3QgzyddY0K7j3s9XuwB9mzv.jpg' ?>"
-                        class="rounded-circle img-fluid" style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;"
-                        alt="Profile" title="Xem trang cá nhân">
+                        class="rounded-circle img-fluid"
+                        style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;" alt="Profile"
+                        title="Xem trang cá nhân">
                 </a>
             <?php else: ?>
                 <button class="btn btn-outline-light" id="btnLogin">Login</button>
@@ -79,7 +80,7 @@ $extraJS = $extraJS ?? "";
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page"
                         href="index.php?controller=product&action=index">Sản phẩm</a></div>
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page"
-                        href="index.php?controller=post&action=index">Tin tức</a></div>
+                        href="index.php?controller=news&action=index">Tin tức</a></div>
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page"
                         href="index.php?controller=answerandquestion&action=index">Hỏi đáp</a></div>
                 <div class="_sidebar-item"><a class="nav-link" aria-current="page"
@@ -393,7 +394,7 @@ $extraJS = $extraJS ?? "";
 
     <!-- JS riêng -->
     <?php if (!empty($extraJS)): ?>
-    <script src="<?= $extraJS ?>"></script>
+        <script src="<?= $extraJS ?>"></script>
     <?php endif; ?>
 
 </body>
