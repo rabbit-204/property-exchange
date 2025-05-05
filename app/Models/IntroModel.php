@@ -54,4 +54,41 @@ class IntroModel extends BaseModel
 
         return $this->query($sql, $params);
     }
+    function deleteIntro($id)
+    {
+        $sql = "DELETE FROM intro WHERE id = :id ";
+        return $this->query($sql, [
+            ':id' => $id
+        ]);
+    }
+    function addIntro($name,$detail, $thumbnail)
+    {
+        $sql = "INSERT INTO intro (name, detail, img) VALUES (:name, :detail, :img)";
+        return $this->query($sql, [
+            ':name' => $name,
+            ':detail' => $detail,
+            ':img' => $thumbnail,
+        ]);
+    }
+    function updateIntro($id, $name, $detail, $thumbnail = null)
+    {
+        if ($thumbnail) {
+            $sql = "UPDATE intro SET name = :name, detail = :detail, img = :img WHERE id = :id";
+            $params = [
+                ':name' => $name,
+                ':detail' => $detail,
+                ':img' => $thumbnail,
+                ':id' => $id
+            ];
+        } else {
+            $sql = "UPDATE intro SET name = :name, detail =  :detail WHERE id = :id";
+            $params = [
+                ':name' => $name,
+                ':detail' => $detail,
+                ':id' => $id
+            ];
+        }
+
+        return $this->query($sql, $params);
+    }
 }
