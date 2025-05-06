@@ -41,7 +41,28 @@
                 <li class="list-group-item"><strong>Loại giao dịch:</strong> <?= $product['sell_type'] ?></li>
                 <li class="list-group-item"><strong>Đặc điểm:</strong> <?= $product['high_light'] ?></li>
                 <li class="list-group-item"><strong>Thành phố:</strong> <?= $product['city'] ?></li>
-                <li class="list-group-item"><strong>Loại BĐS:</strong> <?= $product['type_of_real_estate'] ?></li>
+                <li class="list-group-item">
+                    <strong>Loại BĐS:</strong>
+                    <?php
+                        switch ($product['type_of_real_estate']) {
+                            case 'DetachedHouse':
+                                echo 'Nhà mặt đất';
+                                break;
+                            case 'Villa':
+                                echo 'Biệt thự';
+                                break;
+                            case 'Apartment':
+                                echo 'Chung cư';
+                                break;
+                            case 'Others':
+                                echo 'Khác';
+                                break;
+                            default:
+                                echo 'Không xác định';
+                                break;
+                        }
+                    ?>
+                    </li>
                 <li class="list-group-item"><strong>Tên môi giới:</strong> <?= $product['agent_name'] ?></li>
                 <li class="list-group-item"><strong>SĐT:</strong> <?= $product['phone'] ?></li>
                 <li class="list-group-item"><strong>Số tầng:</strong> <?= $product['floors'] ?></li>
