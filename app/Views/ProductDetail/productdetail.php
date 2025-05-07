@@ -428,7 +428,13 @@
                             </tr>
                             <tr>
                                 <td>Số tầng</td>
-                                <td><?= htmlspecialchars($product['floors']) ?> tầng</td>
+                                <td>
+                                    <?php if ($product['type_of_real_estate'] === 'Apartment'): ?>
+                                        Tầng thứ <?= htmlspecialchars($product['floors']) ?>
+                                    <?php else: ?>
+                                        <?= htmlspecialchars($product['floors']) ?> tầng
+                                    <?php endif; ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Số toilet</td>

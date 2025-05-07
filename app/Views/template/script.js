@@ -138,3 +138,49 @@ var swiper = new Swiper(".mySwiper", {
 {/* </script> */}
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    const avatarForm = document.getElementById('avatarForm'); // Form chứa input file
+    const avatarInput = document.getElementById('avatarInput'); // Input file
+    const profileImage = document.querySelector('.account-link img'); // Ảnh avatar trên header
+    
+    if (avatarForm && avatarInput) {
+        avatarInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const formData = new FormData(avatarForm);
+                
+                fetch(avatarForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest' // Đánh dấu đây là AJAX request
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (data.imgPath) {
+                            // Cập nhật ảnh trên header
+                            if (profileImage) {
+                                profileImage.src = data.imgPath;
+                            }
+                            
+                            // Cập nhật ảnh preview nếu có
+                            const previewImage = document.getElementById('avatarPreview');
+                            if (previewImage) {
+                                previewImage.src = data.imgPath;
+                            }
+                        }
+                        
+                        alert(data.message);
+                    } else {
+                        alert(data.error || 'Có lỗi xảy ra khi cập nhật ảnh đại diện');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi cập nhật ảnh đại diện');
+                });
+            }
+        });
+    }
+});

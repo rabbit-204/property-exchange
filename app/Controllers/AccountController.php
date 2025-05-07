@@ -74,7 +74,26 @@ class AccountController extends BaseController {
             $updated = $this->accountModel->updateAccount($userId, $data);
             
             if ($updated) {
-                $_SESSION['message'] = 'Cập nhật thông tin thành công!';
+                // $_SESSION['message'] = 'Cập nhật thông tin thành công!';
+                if ($imgPath) {
+                    // Cập nhật session với đường dẫn ảnh mới
+                    $_SESSION['user']['img'] = $imgPath;
+                }
+                
+                // Nếu là AJAX request, trả về JSON
+                if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'success' => true,
+                        'message' => 'Cập nhật thông tin thành công!',
+                        'imgPath' => $imgPath ? $imgPath : null
+                    ]);
+                    exit;
+                } else {
+                    $_SESSION['message'] = 'Cập nhật thông tin thành công!';
+                    header('Location: index.php?controller=account&action=index');
+                    exit;
+                }
             } else {
                 $_SESSION['error'] = 'Cập nhật thông tin thất bại!';
             }
