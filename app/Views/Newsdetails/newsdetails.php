@@ -153,7 +153,7 @@
     </div>
 
     <!-- Gửi bình luận -->
-    <?php if (isset($_SESSION['user'])): ?>
+    <?php if (isset($_SESSION['user']) || isset($_SESSION['admin'])): ?>
         <div class="mb-5">
             <h5>Gửi bình luận</h5>
             <form method="POST" action="index.php?controller=comment&action=add">

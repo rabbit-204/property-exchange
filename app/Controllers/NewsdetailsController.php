@@ -36,7 +36,8 @@ class NewsDetailsController extends BaseController
         $comments = $this->commentModel->getCommentsByNews($id, 100);
 
         // Phân quyền
-        $isAdmin = isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin';
+        $isAdmin = (isset($_SESSION['user']) && !empty($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')
+            || isset($_SESSION['admin']);
 
         // Gọi chung 1 view
         return $this->view('newsdetails.index', [
