@@ -44,9 +44,7 @@ class LoginController extends BaseController
                     'error' => 'Mật khẩu hiện tại không đúng',
                 ]);
             }
-            // $newHash = password_hash($newpw, PASSWORD_DEFAULT);
             $success = $this->authmodel->updatePassword($email, $newpw);
-            // $success = $this->authmodel->changepw();
             if ($success) {
                 // Đăng ký thành công, chuyển hướng đến trang login
                 header('Location: /index.php?controller=login&action=index');

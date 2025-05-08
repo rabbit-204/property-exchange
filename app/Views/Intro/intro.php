@@ -21,7 +21,7 @@
 
 
 
-    <div class="swiper-container-wrapper">
+    <!-- <div class="swiper-container-wrapper">
         <h2 style="text-align:center; margin-bottom:20px; ">Bất Động Sản Tại Các Thành Phố Nổi Bật</h2>
         <div class="swiper mySwiper1">
             <div class="swiper-wrapper">
@@ -38,11 +38,10 @@
                 <?php endforeach; ?>
             </div>
 
-            <!-- Nút điều hướng -->
             <div class="swiper-button-next navi_cus"></div>
             <div class="swiper-button-prev navi_cus"></div>
         </div>
-    </div>
+    </div> -->
 
     <?php $i = 1;
     foreach ($listIntro as $Intro): ?>
