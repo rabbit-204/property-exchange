@@ -21,14 +21,15 @@
     <!-- CSS chính -->
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- <link rel="stylesheet" href="/Views/teamplate/style.css"> -->
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e9e=" crossorigin="" />
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Leaflet CSS (Corrected integrity) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin="" />
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Leaflet JS (Corrected integrity) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
 
     <!-- CSS riêng -->
     <?php if (!empty($extraCSS)): ?>
@@ -305,33 +306,6 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="contact-card-container mt-4">
-                    <div class="contact-card" id="paymentCard">
-                        <h5 style="margin-bottom: 20px"><strong>Bạn muốn đặt cọc trước ?</strong></h5>
-                        <?php if (isset($_SESSION['user'])): ?>
-                        <!-- Hiển thị nếu đã đăng nhập -->
-                        <form id="paymentForm">
-                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
-                            <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']) ?>">
-                            <input type="hidden" name="product_price"
-                                value="<?= htmlspecialchars($product['price']) ?>">
-                            <button type="button" id="payButton" class="btn btn-success w-100">Thanh toán qua ngân
-                                hàng</button>
-                        </form>
-                        <div id="paymentResult" class="mt-3" style="display: none;">
-                            <h5 style="margin-bottom: 20px"><strong>Chuyển khoản cho chủ sở hữu</strong></h5>
-                            <p class="mt-2">
-                                <a id="checkoutLink" href="#" target="_blank" class="btn btn-primary w-100">Nhấn vào đây
-                                    để nhận mã QR</a>
-                            </p>
-                        </div>
-                        <?php else: ?>
-                        <!-- Hiển thị nếu chưa đăng nhập -->
-                        <p class="text-danger">Vui lòng <a href="/index.php?controller=login&action=index">đăng nhập</a>
-                            để thực hiện thanh toán.</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -501,38 +475,12 @@
     </div>
 
     <script>
-    document.getElementById('payButton').addEventListener('click', function() {
-        const formData = new FormData(document.getElementById('paymentForm'));
-
-        fetch('index.php?controller=payment&action=create', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Hiển thị mã QR và liên kết thanh toán
-                    document.getElementById('paymentResult').style.display = 'block';
-                    document.getElementById('checkoutLink').href = data.checkoutUrl;
-                } else {
-                    alert(data.message || 'Có lỗi xảy ra khi tạo liên kết thanh toán.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Có lỗi xảy ra khi gửi yêu cầu thanh toán.');
-            });
-    });
     document.getElementById('showPhoneBtn').addEventListener('click', function() {
         const phoneNumber = document.getElementById('phoneNumber');
         phoneNumber.style.display = 'block';
         this.style.display = 'none';
     });
     </script>
-
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-o9N1jG8kG5y6+9mD7u0t+3y4Q6p6t9e9e9e9e9e9e=" crossorigin=""></script>
 
     <script>
     const map = L.map('map').setView([<?= htmlspecialchars($product['latitude']) ?>,
