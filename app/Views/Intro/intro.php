@@ -1,12 +1,16 @@
 <div>
 
-    <iframe
+    <!-- <iframe
         src="https://www.youtube.com/embed/C0ThpPnQwEM?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=C0ThpPnQwEM"
         frameborder="0"
         allow="autoplay"
         allowfullscreen
         style=" width: 100vw; height:100vh; object-fit: cover; pointer-events: none; ">
-    </iframe>
+    </iframe> -->
+    <video autoplay muted loop playsinline style="width: 100vw; height: 100vh; object-fit: cover; pointer-events: none;">
+        <source src="../../uploads/videoIntro.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
 
 
     <div class="intro_sentence" style="padding: 0 20px;">

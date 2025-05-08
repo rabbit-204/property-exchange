@@ -154,15 +154,20 @@ class LoginController extends BaseController
     public function logout()
     {
         session_start();
-        session_unset();
-        session_destroy();
-        if ($_SESSION['admin']){   
+
+        // Xoá token và thông tin người dùng trước khi huỷ session
+        if (isset($_SESSION['admin'])) {
             unset($_SESSION['admin']);
             setcookie('tokenAdmin', '', time() - 3600, "/");
-        }else{
+        } elseif (isset($_SESSION['user'])) {
             unset($_SESSION['user']);
             setcookie('tokenUser', '', time() - 3600, "/");
         }
+
+        // Huỷ session sau khi đã xử lý
+        session_unset();
+        session_destroy();
+
         header('Location: /index.php?controller=login&action=index');
         exit;
     }
