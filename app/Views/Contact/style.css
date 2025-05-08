@@ -1,0 +1,87 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.contact-card {
+  padding: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.contact-card h2,
+.contact-card h4 {
+  color: #343a40;
+}
+
+.contact-info {
+  margin-bottom: 40px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.icon {
+  width: 20px;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* margin-bottom: 100px; cách phần tử bên dưới 100px */
+}
+
+.hero-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-button {
+  background-color: #e7c873;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #d4ac0d;
+}
