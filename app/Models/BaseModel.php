@@ -1,5 +1,6 @@
 <?php
-class BaseModel {
+class BaseModel
+{
 
     protected $conn;
 
